@@ -1,0 +1,11 @@
+Ne pas effacer testTache.xml
+
+Fonctionne avec les modèle de tâches kxml édité avec K-MADe 1.3
+
+Scenario Pour une bonne couverture de test :
+Mettre activité : Faire une randonnée à ski
+Generer le texte de Randonner-vPourTexte.kxml
+Le sauvegarder
+Generer le texte de Senario de reference.kxml
+Generer le texte de TypesEtOperateurs.kxml
+Le sauvegarder

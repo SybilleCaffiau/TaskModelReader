@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmad-model version="1.2">
+  <project classkmad="project.Project" idkmad="K1" />
+  <task classkmad="tache.Tache" id-task-point="K3" id-task-subtasks-list="K7 K10 K13 " idkmad="K4">
+    <task-name>Gérer ses photos numériques</task-name>
+    <task-numero>Racine</task-numero>
+    <task-observation />
+    <task-executant>ABS</task-executant>
+    <task-modality>COGN</task-modality>
+    <task-optional>false</task-optional>
+    <task-interruptible>false</task-interruptible>
+    <task-decomposition>PAR</task-decomposition>
+    <task-precondition>true</task-precondition>
+    <task-effetsdebord>void</task-effetsdebord>
+    <task-iteration>while( ?BOOL )</task-iteration>
+    <task-descriptioniteration>Tant que l'utilisateur le souhaite</task-descriptioniteration>
+    <point classkmad="tache.Point" idkmad="K3">
+      <point-x>555</point-x>
+      <point-y>16</point-y>
+    </point>
+    <task classkmad="tache.Tache" id-task-point="K6" id-task-subtasks-list="K22 K25 " idkmad="K7">
+      <task-name>Ajouter une photo</task-name>
+      <task-numero>1</task-numero>
+      <task-observation />
+      <task-executant>ABS</task-executant>
+      <task-modality>COGN</task-modality>
+      <task-optional>false</task-optional>
+      <task-interruptible>false</task-interruptible>
+      <task-decomposition>SEQ</task-decomposition>
+      <task-precondition>true</task-precondition>
+      <task-effetsdebord>void</task-effetsdebord>
+      <task-iteration>while( ?BOOL )</task-iteration>
+      <task-descriptioniteration>Tant qu'il y a des photos non ajoutées</task-descriptioniteration>
+      <point classkmad="tache.Point" idkmad="K6">
+        <point-x>164</point-x>
+        <point-y>167</point-y>
+      </point>
+      <task classkmad="tache.Tache" id-task-point="K21" idkmad="K22">
+        <task-name>Sélectionner une photo</task-name>
+        <task-numero>1.1</task-numero>
+        <task-observation />
+        <task-executant>INT</task-executant>
+        <task-modality>COGN</task-modality>
+        <task-optional>false</task-optional>
+        <task-interruptible>false</task-interruptible>
+        <task-decomposition>LEAF</task-decomposition>
+        <task-precondition>true</task-precondition>
+        <task-effetsdebord>void</task-effetsdebord>
+        <task-iteration>[1]</task-iteration>
+        <point classkmad="tache.Point" idkmad="K21">
+          <point-x>10</point-x>
+          <point-y>310</point-y>
+        </point>
+      </task>
+      <task classkmad="tache.Tache" id-task-point="K24" idkmad="K25">
+        <task-name>Placer la photo dans les photos non triées</task-name>
+        <task-numero>1.2</task-numero>
+        <task-observation />
+        <task-executant>SYS</task-executant>
+        <task-modality>COGN</task-modality>
+        <task-optional>false</task-optional>
+        <task-interruptible>false</task-interruptible>
+        <task-decomposition>LEAF</task-decomposition>
+        <task-precondition>true</task-precondition>
+        <task-effetsdebord>void</task-effetsdebord>
+        <task-iteration>[1]</task-iteration>
+        <point classkmad="tache.Point" idkmad="K24">
+          <point-x>185</point-x>
+          <point-y>310</point-y>
+        </point>
+      </task>
+    </task>
+    <task classkmad="tache.Tache" id-task-point="K9" id-task-subtasks-list="K16 K19 " idkmad="K10">
+      <task-name>Regarder un album</task-name>
+      <task-numero>2</task-numero>
+      <task-observation />
+      <task-executant>ABS</task-executant>
+      <task-modality>COGN</task-modality>
+      <task-optional>false</task-optional>
+      <task-interruptible>false</task-interruptible>
+      <task-decomposition>SEQ</task-decomposition>
+      <task-precondition>true</task-precondition>
+      <task-effetsdebord>void</task-effetsdebord>
+      <task-iteration>while(?BOOL  )</task-iteration>
+      <task-descriptioniteration>Tant que l'utilisateur le souhaite</task-descriptioniteration>
+      <point classkmad="tache.Point" idkmad="K9">
+        <point-x>664</point-x>
+        <point-y>167</point-y>
+      </point>
+      <task classkmad="tache.Tache" id-task-point="K15" idkmad="K16">
+        <task-name>Sélectionner un album</task-name>
+        <task-numero>2.1</task-numero>
+        <task-observation />
+        <task-executant>INT</task-executant>
+        <task-modality>COGN</task-modality>
+        <task-optional>false</task-optional>
+        <task-interruptible>false</task-interruptible>
+        <task-decomposition>LEAF</task-decomposition>
+        <task-precondition>true</task-precondition>
+        <task-effetsdebord>void</task-effetsdebord>
+        <task-iteration>[1]</task-iteration>
+        <point classkmad="tache.Point" idkmad="K15">
+          <point-x>495</point-x>
+          <point-y>310</point-y>
+        </point>
+      </task>
+      <task classkmad="tache.Tache" id-task-point="K18" idkmad="K19">
+        <task-name>Visualiser l'album</task-name>
+        <task-numero>2.2</task-numero>
+        <task-observation />
+        <task-executant>INT</task-executant>
+        <task-modality>COGN</task-modality>
+        <task-optional>false</task-optional>
+        <task-interruptible>false</task-interruptible>
+        <task-decomposition>LEAF</task-decomposition>
+        <task-precondition>true</task-precondition>
+        <task-effetsdebord>void</task-effetsdebord>
+        <task-iteration>[1]</task-iteration>
+        <point classkmad="tache.Point" idkmad="K18">
+          <point-x>662</point-x>
+          <point-y>310</point-y>
+        </point>
+      </task>
+    </task>
+    <task classkmad="tache.Tache" id-task-point="K12" id-task-subtasks-list="K31 K34 " idkmad="K13">
+      <task-name>Organiser ses photos</task-name>
+      <task-numero>3</task-numero>
+      <task-observation />
+      <task-executant>ABS</task-executant>
+      <task-modality>COGN</task-modality>
+      <task-optional>false</task-optional>
+      <task-interruptible>false</task-interruptible>
+      <task-decomposition>ALT</task-decomposition>
+      <task-precondition>true</task-precondition>
+      <task-effetsdebord>void</task-effetsdebord>
+      <task-iteration>while(?BOOL  )</task-iteration>
+      <task-descriptioniteration>Tant que l'utilisateur le veut</task-descriptioniteration>
+      <point classkmad="tache.Point" idkmad="K12">
+        <point-x>1012</point-x>
+        <point-y>167</point-y>
+      </point>
+      <task classkmad="tache.Tache" id-task-point="K30" id-task-subtasks-list="K37 K40 " idkmad="K31">
+        <task-name>Mettre une photos dans un album</task-name>
+        <task-numero>3.1</task-numero>
+        <task-observation />
+        <task-executant>ABS</task-executant>
+        <task-modality>COGN</task-modality>
+        <task-optional>false</task-optional>
+        <task-interruptible>false</task-interruptible>
+        <task-decomposition>SEQ</task-decomposition>
+        <task-precondition>true</task-precondition>
+        <task-effetsdebord>void</task-effetsdebord>
+        <task-iteration>[1]</task-iteration>
+        <point classkmad="tache.Point" idkmad="K30">
+          <point-x>930</point-x>
+          <point-y>310</point-y>
+        </point>
+        <task classkmad="tache.Tache" id-task-point="K36" idkmad="K37">
+          <task-name>Sélectionner une photo</task-name>
+          <task-numero>3.1.1</task-numero>
+          <task-observation />
+          <task-executant>INT</task-executant>
+          <task-modality>COGN</task-modality>
+          <task-optional>false</task-optional>
+          <task-interruptible>false</task-interruptible>
+          <task-decomposition>LEAF</task-decomposition>
+          <task-precondition>true</task-precondition>
+          <task-effetsdebord>void</task-effetsdebord>
+          <task-iteration>while(?BOOL  )</task-iteration>
+          <task-descriptioniteration>Tant que l'utilisateur le souhaite</task-descriptioniteration>
+          <point classkmad="tache.Point" idkmad="K36">
+            <point-x>631</point-x>
+            <point-y>447</point-y>
+          </point>
+        </task>
+        <task classkmad="tache.Tache" id-task-point="K39" idkmad="K40">
+          <task-name>Choisir l'album cible</task-name>
+          <task-numero>3.1.2</task-numero>
+          <task-observation />
+          <task-executant>ABS</task-executant>
+          <task-modality>COGN</task-modality>
+          <task-optional>false</task-optional>
+          <task-interruptible>false</task-interruptible>
+          <task-decomposition>LEAF</task-decomposition>
+          <task-precondition>true</task-precondition>
+          <task-effetsdebord>void</task-effetsdebord>
+          <task-iteration>[1]</task-iteration>
+          <point classkmad="tache.Point" idkmad="K39">
+            <point-x>823</point-x>
+            <point-y>447</point-y>
+          </point>
+        </task>
+      </task>
+      <task classkmad="tache.Tache" id-task-point="K33" id-task-subtasks-list="K43 K46 " idkmad="K34">
+        <task-name>Ranger les photos d'un album</task-name>
+        <task-numero>3.2</task-numero>
+        <task-observation />
+        <task-executant>ABS</task-executant>
+        <task-modality>COGN</task-modality>
+        <task-optional>false</task-optional>
+        <task-interruptible>false</task-interruptible>
+        <task-decomposition>SEQ</task-decomposition>
+        <task-precondition>true</task-precondition>
+        <task-effetsdebord>void</task-effetsdebord>
+        <task-iteration>[1]</task-iteration>
+        <point classkmad="tache.Point" idkmad="K33">
+          <point-x>1242</point-x>
+          <point-y>310</point-y>
+        </point>
+        <task classkmad="tache.Tache" id-task-point="K42" idkmad="K43">
+          <task-name>Choisir un album</task-name>
+          <task-numero>3.2.1</task-numero>
+          <task-observation />
+          <task-executant>INT</task-executant>
+          <task-modality>COGN</task-modality>
+          <task-optional>false</task-optional>
+          <task-interruptible>false</task-interruptible>
+          <task-decomposition>LEAF</task-decomposition>
+          <task-precondition>true</task-precondition>
+          <task-effetsdebord>void</task-effetsdebord>
+          <task-iteration>[1]</task-iteration>
+          <point classkmad="tache.Point" idkmad="K42">
+            <point-x>1038</point-x>
+            <point-y>447</point-y>
+          </point>
+        </task>
+        <task classkmad="tache.Tache" id-task-point="K45" idkmad="K46">
+          <task-name>Modifier le placement des photos dans l'album</task-name>
+          <task-numero>3.2.2</task-numero>
+          <task-observation />
+          <task-executant>INT</task-executant>
+          <task-modality>COGN</task-modality>
+          <task-optional>false</task-optional>
+          <task-interruptible>false</task-interruptible>
+          <task-decomposition>LEAF</task-decomposition>
+          <task-precondition>true</task-precondition>
+          <task-effetsdebord>void</task-effetsdebord>
+          <task-iteration>while( ?BOOL )</task-iteration>
+          <task-descriptioniteration>Tant que l'utilisateur le veut</task-descriptioniteration>
+          <point classkmad="tache.Point" idkmad="K45">
+            <point-x>1181</point-x>
+            <point-y>447</point-y>
+          </point>
+        </task>
+      </task>
+    </task>
+  </task>
+</kmad-model>

@@ -1,0 +1,2243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kmad-model SYSTEM "file:KMADModelJT.dtd">
+<kmad-model version="1.2">
+    <project classkmad="project.Project" idkmad="K1"/>
+    <Organisation classkmad="tache.Organization" idkmad="K10">
+        <organisation-name>cellule coordination et descision</organisation-name>
+    </Organisation>
+    <Individu classkmad="tache.Person" id-organisation="K10 " idkmad="K11">
+        <individu-name>elu d astreinte a l exploitation des donnees</individu-name>
+        <individu-statut>Elu</individu-statut>
+        <individu-role>Receptionner les données et les analyser pour suivi des seuils</individu-role>
+        <id-organisation>K10</id-organisation>
+    </Individu>
+    <event classkmad="tache.Event" idkmad="K12">
+        <event-name>evenement declencheur de crise pouvant etre anticipe</event-name>
+    </event>
+    <prototaskcondition classkmad="metaobjet.ProtoTaskCondition" idkmad="K13">
+        <PTTcondition-description>systeme de surveillance en place sur la commune</PTTcondition-description>
+        <PTTcondition-value>TRUE</PTTcondition-value>
+    </prototaskcondition>
+    <Machine classkmad="tache.Machine" idkmad="K20">
+        <machine-name>cartes de vigilances</machine-name>
+        <machine-description>Données méteo, dossier PPI...</machine-description>
+        <machine-isComputer>true</machine-isComputer>
+    </Machine>
+    <Machine classkmad="tache.Machine" idkmad="K21">
+        <machine-name>seuils de vigilances</machine-name>
+        <machine-description>Référentiels des valeurs seuils de viglances, d'alerte</machine-description>
+        <machine-isComputer>true</machine-isComputer>
+    </Machine>
+    <prototaskcondition classkmad="metaobjet.ProtoTaskCondition" idkmad="K22">
+        <PTTcondition-description>cartes de vigilance et documents fixant les seuils de vigilance et les seuils d'alerte</PTTcondition-description>
+        <PTTcondition-value>TRUE</PTTcondition-value>
+    </prototaskcondition>
+    <label classkmad="tache.Label" idkmad="K23">
+        <label-name>coodination et descision</label-name>
+        <label-color>
+            <label-color-red>0</label-color-red>
+            <label-color-green>255</label-color-green>
+            <label-color-blue>255</label-color-blue>
+        </label-color>
+        <label-visible>true</label-visible>
+        <label-colorvisible>true</label-colorvisible>
+    </label>
+    <event classkmad="tache.Event" idkmad="K29">
+        <event-name>transmission des valeurs du terrain</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K30">
+        <event-name>seuil d armement du PCS</event-name>
+    </event>
+    <Organisation classkmad="tache.Organization" idkmad="K34">
+        <organisation-name>cellule logistique</organisation-name>
+    </Organisation>
+    <Individu classkmad="tache.Person" id-organisation="K34 " idkmad="K39">
+        <individu-name>elus d astreinte a la logistique</individu-name>
+        <individu-statut>Elus</individu-statut>
+        <individu-role>Surveillent et organisent la logistique</individu-role>
+        <id-organisation>K34</id-organisation>
+    </Individu>
+    <event classkmad="tache.Event" idkmad="K48">
+        <event-name>Maintient dans les seuils de vigilance</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K49">
+        <event-name>transmission des valeurs exploitees</event-name>
+    </event>
+    <Individu classkmad="tache.Person" id-organisation="K52 " idkmad="K50">
+        <individu-name>Porte parole</individu-name>
+        <individu-statut>Elu</individu-statut>
+        <individu-role>Réaliser les messages pour le DOS à destination de la popultation des autorités et des medias</individu-role>
+        <id-organisation>K52</id-organisation>
+    </Individu>
+    <Individu classkmad="tache.Person" id-organisation="K10 " idkmad="K51">
+        <individu-name>Maire DOS</individu-name>
+        <individu-statut>Directeur des opéaration de secours</individu-statut>
+        <individu-role>Prend les descisions décline le PCS</individu-role>
+        <id-organisation>K10</id-organisation>
+    </Individu>
+    <Organisation classkmad="tache.Organization" idkmad="K52">
+        <organisation-name>cellule Communication</organisation-name>
+    </Organisation>
+    <event classkmad="tache.Event" idkmad="K55">
+        <event-name>Mobilisation</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K62">
+        <event-name>Information des populations</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K71">
+        <event-name>Armement du PCS</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K91">
+        <event-name>Information des secours</event-name>
+    </event>
+    <Individu classkmad="tache.Person" id-organisation="K102 " idkmad="K101">
+        <individu-name>Sapeur Pompier</individu-name>
+        <individu-statut>SDIS</individu-statut>
+        <individu-role>Maitrise de l evenement et secour</individu-role>
+        <id-organisation>K102</id-organisation>
+    </Individu>
+    <Organisation classkmad="tache.Organization" idkmad="K102">
+        <organisation-name>Cellule secour</organisation-name>
+        <organisation-statut>Securité civile</organisation-statut>
+        <organisation-role>Maitrise de l'evenement et secour</organisation-role>
+    </Organisation>
+    <Individu classkmad="tache.Person" id-organisation="K102 " idkmad="K105">
+        <individu-name>Commandant Pompier COS</individu-name>
+        <individu-statut>SDIS</individu-statut>
+        <individu-role>Prend les descisions decline les protocoles de secour</individu-role>
+        <id-organisation>K102</id-organisation>
+    </Individu>
+    <Individu classkmad="tache.Person" id-organisation="K10 " idkmad="K106">
+        <individu-name>Secretaire de mairie adjoint</individu-name>
+        <individu-statut>Elu</individu-statut>
+        <individu-role>Organise les différentes cellules</individu-role>
+        <id-organisation>K10</id-organisation>
+    </Individu>
+    <event classkmad="tache.Event" idkmad="K108">
+        <event-name>Seuils de vigilance depasses</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K150">
+        <event-name>diagnostic terrain 1</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K151">
+        <event-name>Evaluation des ressources secours</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K152">
+        <event-name>Evaluation des ressources sauvegardes</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K153">
+        <event-name>mobiliser les elus et les benevoles</event-name>
+    </event>
+    <Individu classkmad="tache.Person" id-organisation="K10 K359 K52 K34 " idkmad="K154">
+        <individu-name>referents de cellules</individu-name>
+        <individu-statut>Elus</individu-statut>
+        <individu-role>Responsables des différentes cellules</individu-role>
+        <id-organisation>K10</id-organisation>
+        <id-organisation>K359</id-organisation>
+        <id-organisation>K52</id-organisation>
+        <id-organisation>K34</id-organisation>
+    </Individu>
+    <Individu classkmad="tache.Person" id-organisation="K52 " idkmad="K155">
+        <individu-name>referents communication</individu-name>
+        <individu-statut>Elus</individu-statut>
+        <individu-role>Responsable de la main courante</individu-role>
+        <id-organisation>K52</id-organisation>
+    </Individu>
+    <event classkmad="tache.Event" idkmad="K167">
+        <event-name>Mise en place des cellules de crise</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K168">
+        <event-name>Point de situation</event-name>
+    </event>
+    <Individu classkmad="tache.Person" id-organisation="K10 " idkmad="K177">
+        <individu-name>RAC</individu-name>
+        <individu-statut>Elu</individu-statut>
+        <individu-role>Fais le lien entre les opérations de secours et le PCC</individu-role>
+        <id-organisation>K10</id-organisation>
+    </Individu>
+    <event classkmad="tache.Event" idkmad="K179">
+        <event-name>Informer les autorites</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K202">
+        <event-name>synthese des informations</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K203">
+        <event-name>organisation des cellules de crises</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K204">
+        <event-name>consigner les actions de gestion de crises</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K205">
+        <event-name>niveau d armement du PCS synthese</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K209">
+        <event-name>PCS arme</event-name>
+    </event>
+    <Individu classkmad="tache.Person" id-organisation="K10 " idkmad="K286">
+        <individu-name>Referent PCO</individu-name>
+        <individu-statut>Elu</individu-statut>
+        <individu-role>Faire le lien entre les cellules, rôle de synthèse</individu-role>
+        <id-organisation>K10</id-organisation>
+    </Individu>
+    <Organisation classkmad="tache.Organization" idkmad="K359">
+        <organisation-name>cellule soutien population</organisation-name>
+    </Organisation>
+    <Individu classkmad="tache.Person" id-organisation="K359 " idkmad="K360">
+        <individu-name>elus d astreinte aux populations</individu-name>
+        <individu-statut>Elus</individu-statut>
+        <individu-role>Identifient les sinistrées et les personnes sensibles, evaluent les besoins</individu-role>
+        <id-organisation>K359</id-organisation>
+    </Individu>
+    <event classkmad="tache.Event" idkmad="K364">
+        <event-name>listing personnes vulnerables</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K365">
+        <event-name>Evacuation ou assistance au domicile</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K366">
+        <event-name>identification des sites vulnerables et des personnes a soutenir</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K367">
+        <event-name>appui logistique</event-name>
+    </event>
+    <Individu classkmad="tache.Person" id-organisation="K359 " idkmad="K368">
+        <individu-name>Referent cellule soutien population</individu-name>
+        <id-organisation>K359</id-organisation>
+    </Individu>
+    <event classkmad="tache.Event" idkmad="K371">
+        <event-name>informations pour la cellule coordination et descision</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K373">
+        <event-name>definir les moyens pour repondre aux besoins de la population</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K385">
+        <event-name>deficit des reseaux de communications</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K386">
+        <event-name>aide prefecture mise en place des radioamateurs</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K387">
+        <event-name>communications operationnelles</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K388">
+        <event-name>listing des materiels dispo sur la communes</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K390">
+        <event-name>materiels disponbiles</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K391">
+        <event-name>materiels indisponibles</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K392">
+        <event-name>demande de soutien en materiels</event-name>
+    </event>
+    <Machine classkmad="tache.Machine" idkmad="K437">
+        <machine-name>listing materiel communal disponible</machine-name>
+        <machine-isComputer>true</machine-isComputer>
+    </Machine>
+    <event classkmad="tache.Event" idkmad="K471">
+        <event-name>reseau distribution operationnelle</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K472">
+        <event-name>deficit reseaux de distribution</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K477">
+        <event-name>moyens de secours definis</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K478">
+        <event-name>Materiels de secours disponibles</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K479">
+        <event-name>Descision tactiques et activites terrain</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K480">
+        <event-name>Descions strategiques</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K484">
+        <event-name>disponibilite des benevoles</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K485">
+        <event-name>ressources disponibles identifes et contactes</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K486">
+        <event-name>appels des populations</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K487">
+        <event-name>information</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K555">
+        <event-name>identifier les ressources pour acheminer le materiel</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K556">
+        <event-name>Mobiliser les ressources humaines de la communes</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K557">
+        <event-name>Acheminement des materiels</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K558">
+        <event-name>Vehicules disponibles</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K559">
+        <event-name>Voies d acces pour le materiel</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K594">
+        <event-name>moyens de sauvegarde definis</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K603">
+        <event-name>Message d alerte</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K604">
+        <event-name>Armement du PSM</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K715">
+        <event-name>voies d acces securiser</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K722">
+        <event-name>personnes en detresses</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K727">
+        <event-name>personnes a evacuer</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K731">
+        <event-name>listing des personnes a nourrir</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K741">
+        <event-name>definition des mesures et des moyens de securite</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K759">
+        <event-name>appels media</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K777">
+        <event-name>Victime prises en charges</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K778">
+        <event-name>Personnes decedees</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K779">
+        <event-name>liste des victimes</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K780">
+        <event-name>etat suivi medical</event-name>
+    </event>
+    <task classkmad="tache.Task" id-task-actors-list="K784 " id-task-events-list="K480 " id-task-eventtrigger="K1149" id-task-point="K781" id-task-subtasks-list="K743 K761 K888 " idkmad="K782">
+        <task-name>Gerer l'evenement</task-name>
+        <task-numero>Racine   </task-numero>
+        <task-observation>Conflits:
+Somme des sources des conflits identifier
+Nentrée= Sommes des sorties des fonctions mettre en securité, secourir et accompagner</task-observation>
+        <task-executant>ABS</task-executant>
+        <task-modality>COGN</task-modality>
+        <task-optional>false</task-optional>
+        <task-interruptible>false</task-interruptible>
+        <task-decomposition>SEQ</task-decomposition>
+        <task-precondition>true</task-precondition>
+        <task-effetsdebord>void</task-effetsdebord>
+        <task-iteration>[1]</task-iteration>
+        <point classkmad="tache.Point" idkmad="K781">
+            <point-x>1813</point-x>
+            <point-y>16</point-y>
+        </point>
+        <actor classkmad="tache.Actor" id-user="K51" idkmad="K784">
+            <actor-experience>UNK</actor-experience>
+        </actor>
+        <task classkmad="tache.Task" id-task-actors-list="K745 K746 " id-task-events-list="K480 " id-task-eventtrigger="K1149" id-task-label="K23" id-task-point="K742" id-task-subtasks-list="K315 K614 K551 K734 K738 " idkmad="K743">
+            <task-name>Mettre en sécurité</task-name>
+            <task-numero>1</task-numero>
+            <task-observation>Conflits:
+1. Conflits dans les rôles et les fonctions dans la sous fonction sécuriser les populations. La cellule soutien au population peut prendre des déscisions en lieu et place de la cellule soutien et communique directement aux populations des lieux d'accueil non ouvert ou non validé.
+2. Conflits de statégies terrain dans la sous fonction organiser la mise en sécurité. Les choix faits parla cellule logisitique dans la sous fonction sécuriser les populations doivent tenir compte des déscisions tactiques et activité terraines de la sous fonctions sécuriser les victimes
+3. Conflit de communication: Communication sur la sauvegarde; Risque de communiquer sur les éléments du secour sans avoir toutes les informations. 
+Nentrée= Sommes des sorties des taches filles+sorties des fonctions Gerer, alerter, agir</task-observation>
+            <task-executant>ABS</task-executant>
+            <task-modality>COGN</task-modality>
+            <task-optional>false</task-optional>
+            <task-interruptible>false</task-interruptible>
+            <task-decomposition>SEQ</task-decomposition>
+            <task-precondition>true</task-precondition>
+            <task-effetsdebord>void</task-effetsdebord>
+            <task-iteration>[1]</task-iteration>
+            <point classkmad="tache.Point" idkmad="K742">
+                <point-x>1484</point-x>
+                <point-y>157</point-y>
+            </point>
+            <actor classkmad="tache.Actor" id-user="K51" idkmad="K745">
+                <actor-experience>UNK</actor-experience>
+            </actor>
+            <actor classkmad="tache.Actor" id-user="K177" idkmad="K746">
+                <actor-experience>UNK</actor-experience>
+            </actor>
+            <task classkmad="tache.Task" id-task-actors-list="K492 " id-task-events-list="K480 " id-task-eventtrigger="K1149" id-task-label="K23" id-task-point="K314" id-task-subtasks-list="K127 K284 K294 K303 K312 " idkmad="K315">
+                <task-name>Gerer</task-name>
+                <task-numero>1.1</task-numero>
+                <task-observation>Fonction3: Vise à definir la stratégie à adopter.
+Conflits:
+1. Conflit de stratégie entre les différentes cellules
+2. Conflit de stratégie entre la cellule secours et les cellules de sauvegardes.
+Nentrées= Somme des taches filles+ Sortie de la fonction mobiliser</task-observation>
+                <task-executant>ABS</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>SEQ</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K314">
+                    <point-x>1246</point-x>
+                    <point-y>1287</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K51" idkmad="K492">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+                <task classkmad="tache.Task" id-task-actors-list="K231 " id-task-events-list="K480 " id-task-eventtrigger="K1149" id-task-label="K23" id-task-point="K126" id-task-subtasks-list="K1007 K1023 K1026 K1029 K1032 " idkmad="K127">
+                    <task-name>Mobiliser</task-name>
+                    <task-numero>1.1.1</task-numero>
+                    <task-observation>Fonction2. Le DOS décide d'armer le PCS.
+Conflits:
+Conflits d'Informations: conflits entre les informations transmises par les secours et la commune auxautorités
+Conflits de rôle et de fonction: Mobiliser les acteurs communaux: conflits dans la création des cellules de crises et de l'affectation des fonctions. Champs d'intervention des cellules.
+A ce stade la mise en place de point de synthèse, d'un RAC et d'une référent PCO est primordiale.
+Nentrées= sommes des sorties des tachesfilles+sortie de la fonction mettre en vigilance
+Nsortie: Déscisions stratégiques =Définition de la stratégie pour organiser la mobilisation</task-observation>
+                    <task-executant>ABS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>SEQ</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K126">
+                        <point-x>1198</point-x>
+                        <point-y>1898</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K51" idkmad="K231">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                    <task classkmad="tache.Task" id-task-actors-list="K1009 " id-task-events-list="K30 " id-task-eventtrigger="K108" id-task-label="K23" id-task-point="K1006" id-task-subtasks-list="K1000 K1003 " idkmad="K1007">
+                        <task-name>Mettre en vigilance</task-name>
+                        <task-numero>1.1.1.1</task-numero>
+                        <task-observation>Fonction1. Mise en vigilance. Etape préalable à la mobilisation. Cette étape au niveau de la commune est possible si l'evenement est prévisible.
+Sources de conflit:
+Conflits de communication: 
+1. La communication entre la ce secours et la population
+2. La communication entre la cellule communication et la population
+3. La non communication entre la tache vigilance secours et la tache vigilance  commune (Tache synthèse des information non respectée)</task-observation>
+                        <task-executant>ABS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>SEQ</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K1006">
+                            <point-x>1082</point-x>
+                            <point-y>2146</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K51" idkmad="K1009">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                        <task classkmad="tache.Task" id-task-actors-list="K1005 " id-task-events-list="K108 " id-task-eventtrigger="K1149" id-task-label="K23" id-task-point="K999" id-task-subtasks-list="K974 K990 K997 " idkmad="K1000">
+                            <task-name>Synthèse des informations</task-name>
+                            <task-numero>1.1.1.1.1</task-numero>
+                            <task-observation>N entrée= Diagnostic 1 ou Diagnostic 2 </task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>PAR</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K999">
+                                <point-x>1016</point-x>
+                                <point-y>2315</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K51" idkmad="K1005">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                            <task classkmad="tache.Task" id-task-actors-list="K976 " id-task-events-list="K150 " id-task-eventtrigger="K49" id-task-label="K1140" id-task-point="K973" id-task-subtasks-list="K966 K969 " idkmad="K974">
+                                <task-name>vigilance commune</task-name>
+                                <task-numero>1.1.1.1.1.1</task-numero>
+                                <task-observation>Cette tache permet la réalisation du diagnostic terrain si l'evenement peut être anticipé.
+OPT: L'option s'applique si l'evenement est prévisible et si la commune dispose d'une fonction et d'une structure vigilance permanente.
+Alternatif= Echange entre l'exploitation et le terrain qui permette le diagnostic terrain</task-observation>
+                                <task-executant>ABS</task-executant>
+                                <task-modality>COGN</task-modality>
+                                <task-optional>true</task-optional>
+                                <task-interruptible>false</task-interruptible>
+                                <task-decomposition>ALT</task-decomposition>
+                                <task-precondition>true</task-precondition>
+                                <task-effetsdebord>void</task-effetsdebord>
+                                <task-iteration>[1]</task-iteration>
+                                <point classkmad="tache.Point" idkmad="K973">
+                                    <point-x>1036</point-x>
+                                    <point-y>2468</point-y>
+                                </point>
+                                <actor classkmad="tache.Actor" id-user="K39" idkmad="K976">
+                                    <actor-experience>UNK</actor-experience>
+                                </actor>
+                                <task classkmad="tache.Task" id-task-actors-list="K971 " id-task-events-list="K29 " id-task-eventtrigger="K12" id-task-label="K1140" id-task-point="K965" idkmad="K966">
+                                    <task-name>Surveiller</task-name>
+                                    <task-numero>1.1.1.1.1.1.1</task-numero>
+                                    <task-observation>Evenement déclencheur de crise pouvant etre anticipé. Se rendre sur place pour recueillir les informations relatifs à l'évenement. Systeme de capteurs en place sur la commune. Surveiller l'evolution de la situation. Evaluer tous les impacts sur la commune (infrastructure)</task-observation>
+                                    <task-executant>USER</task-executant>
+                                    <task-modality>COGN</task-modality>
+                                    <task-optional>false</task-optional>
+                                    <task-interruptible>false</task-interruptible>
+                                    <task-decomposition>LEAF</task-decomposition>
+                                    <task-precondition>true</task-precondition>
+                                    <task-effetsdebord>void</task-effetsdebord>
+                                    <task-iteration>[1]</task-iteration>
+                                    <point classkmad="tache.Point" idkmad="K965">
+                                        <point-x>961</point-x>
+                                        <point-y>2621</point-y>
+                                    </point>
+                                    <actor classkmad="tache.Actor" id-user="K34" idkmad="K971">
+                                        <actor-experience>UNK</actor-experience>
+                                    </actor>
+                                </task>
+                                <task classkmad="tache.Task" id-task-actors-list="K972 " id-task-events-list="K49 " id-task-eventtrigger="K29" id-task-label="K1140" id-task-point="K968" idkmad="K969">
+                                    <task-name>Exploiter</task-name>
+                                    <task-numero>1.1.1.1.1.1.2</task-numero>
+                                    <task-observation>Exploiter les cartes de vigilances, exploiter les données météo, exploiter les PPI.</task-observation>
+                                    <task-executant>USER</task-executant>
+                                    <task-modality>COGN</task-modality>
+                                    <task-optional>false</task-optional>
+                                    <task-interruptible>false</task-interruptible>
+                                    <task-decomposition>LEAF</task-decomposition>
+                                    <task-precondition>true</task-precondition>
+                                    <task-effetsdebord>void</task-effetsdebord>
+                                    <task-iteration>[1]</task-iteration>
+                                    <point classkmad="tache.Point" idkmad="K968">
+                                        <point-x>1115</point-x>
+                                        <point-y>2620</point-y>
+                                    </point>
+                                    <actor classkmad="tache.Actor" id-user="K34" idkmad="K972">
+                                        <actor-experience>UNK</actor-experience>
+                                    </actor>
+                                </task>
+                            </task>
+                            <task classkmad="tache.Task" id-task-actors-list="K995 " id-task-events-list="K1151 " id-task-eventtrigger="K49" id-task-label="K1142" id-task-point="K989" id-task-subtasks-list="K981 K984 K987 " idkmad="K990">
+                                <task-name>Vigilance secour</task-name>
+                                <task-numero>1.1.1.1.1.2</task-numero>
+                                <task-observation>Cette tache permet la réalisation du diagnostic terrain si l'evenement peut être anticipé.
+OPT= Si secour sur place</task-observation>
+                                <task-executant>ABS</task-executant>
+                                <task-modality>COGN</task-modality>
+                                <task-optional>true</task-optional>
+                                <task-interruptible>false</task-interruptible>
+                                <task-decomposition>ALT</task-decomposition>
+                                <task-precondition>true</task-precondition>
+                                <task-effetsdebord>void</task-effetsdebord>
+                                <task-iteration>[1]</task-iteration>
+                                <point classkmad="tache.Point" idkmad="K989">
+                                    <point-x>1289</point-x>
+                                    <point-y>2468</point-y>
+                                </point>
+                                <actor classkmad="tache.Actor" id-user="K105" idkmad="K995">
+                                    <actor-experience>UNK</actor-experience>
+                                </actor>
+                                <task classkmad="tache.Task" id-task-actors-list="K992 " id-task-events-list="K29 " id-task-eventtrigger="K12" id-task-label="K1142" id-task-point="K980" idkmad="K981">
+                                    <task-name>Intervenir</task-name>
+                                    <task-numero>1.1.1.1.1.2.1</task-numero>
+                                    <task-observation/>
+                                    <task-executant>USER</task-executant>
+                                    <task-modality>COGN</task-modality>
+                                    <task-optional>false</task-optional>
+                                    <task-interruptible>false</task-interruptible>
+                                    <task-decomposition>LEAF</task-decomposition>
+                                    <task-precondition>true</task-precondition>
+                                    <task-effetsdebord>void</task-effetsdebord>
+                                    <task-iteration>[1]</task-iteration>
+                                    <point classkmad="tache.Point" idkmad="K980">
+                                        <point-x>1251</point-x>
+                                        <point-y>2618</point-y>
+                                    </point>
+                                    <actor classkmad="tache.Actor" id-user="K101" idkmad="K992">
+                                        <actor-experience>UNK</actor-experience>
+                                    </actor>
+                                </task>
+                                <task classkmad="tache.Task" id-task-actors-list="K993 " id-task-events-list="K49 " id-task-eventtrigger="K29" id-task-label="K1142" id-task-point="K983" idkmad="K984">
+                                    <task-name>Evaluer</task-name>
+                                    <task-numero>1.1.1.1.1.2.2</task-numero>
+                                    <task-observation>Evaluer les risques liés à l'évenement et son évolution</task-observation>
+                                    <task-executant>USER</task-executant>
+                                    <task-modality>COGN</task-modality>
+                                    <task-optional>false</task-optional>
+                                    <task-interruptible>false</task-interruptible>
+                                    <task-decomposition>LEAF</task-decomposition>
+                                    <task-precondition>true</task-precondition>
+                                    <task-effetsdebord>void</task-effetsdebord>
+                                    <task-iteration>[1]</task-iteration>
+                                    <point classkmad="tache.Point" idkmad="K983">
+                                        <point-x>1379</point-x>
+                                        <point-y>2622</point-y>
+                                    </point>
+                                    <actor classkmad="tache.Actor" id-user="K101" idkmad="K993">
+                                        <actor-experience>UNK</actor-experience>
+                                    </actor>
+                                </task>
+                                <task classkmad="tache.Task" id-task-actors-list="K994 " id-task-events-list="K487 " id-task-eventtrigger="K49" id-task-label="K1142" id-task-point="K986" idkmad="K987">
+                                    <task-name>Communiquer</task-name>
+                                    <task-numero>1.1.1.1.1.2.3</task-numero>
+                                    <task-observation>Communiquer aux populations avoisinantes sur les mesures de secours à prendre</task-observation>
+                                    <task-executant>USER</task-executant>
+                                    <task-modality>COGN</task-modality>
+                                    <task-optional>false</task-optional>
+                                    <task-interruptible>false</task-interruptible>
+                                    <task-decomposition>LEAF</task-decomposition>
+                                    <task-precondition>true</task-precondition>
+                                    <task-effetsdebord>void</task-effetsdebord>
+                                    <task-iteration>[1]</task-iteration>
+                                    <point classkmad="tache.Point" idkmad="K986">
+                                        <point-x>1513</point-x>
+                                        <point-y>2618</point-y>
+                                    </point>
+                                    <actor classkmad="tache.Actor" id-user="K101" idkmad="K994">
+                                        <actor-experience>UNK</actor-experience>
+                                    </actor>
+                                </task>
+                            </task>
+                            <task classkmad="tache.Task" id-task-point="K996" idkmad="K997">
+                                <task-name>Evenement generateur</task-name>
+                                <task-numero>1.1.1.1.1.3</task-numero>
+                                <task-observation/>
+                                <task-executant>USER</task-executant>
+                                <task-modality>COGN</task-modality>
+                                <task-optional>false</task-optional>
+                                <task-interruptible>false</task-interruptible>
+                                <task-decomposition>LEAF</task-decomposition>
+                                <task-precondition>true</task-precondition>
+                                <task-effetsdebord>void</task-effetsdebord>
+                                <task-iteration>[1]</task-iteration>
+                                <point classkmad="tache.Point" idkmad="K996">
+                                    <point-x>1477</point-x>
+                                    <point-y>2468</point-y>
+                                </point>
+                            </task>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K1036 " id-task-events-list="K62 " id-task-eventtrigger="K108" id-task-label="K1139" id-task-point="K1002" idkmad="K1003">
+                            <task-name>Communiquer</task-name>
+                            <task-numero>1.1.1.1.2</task-numero>
+                            <task-observation>Information des population du niveau de vigilances et du passage du niveau de vigilance au niveau d'alerte</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K1002">
+                                <point-x>1235</point-x>
+                                <point-y>2315</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K50" idkmad="K1036">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K1043 " id-task-events-list="K203 " id-task-label="K23" id-task-point="K1022" id-task-subtasks-list="K1011 K1014 " idkmad="K1023">
+                        <task-name>Mobiliser les acteurs communaux</task-name>
+                        <task-numero>1.1.1.2</task-numero>
+                        <task-observation>Il s'agit de s'assurer de l'armement du PCS. A savoir constitution des cellules de crise, mise en place de l'organigramme de crise avec les acteurs dédiés, mise en fonction des 10 fonctions de crises nécessaire à la gestion de l'evenement.
+NEntrées= Somme des taches filles</task-observation>
+                        <task-executant>ABS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>SEQ</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K1022">
+                            <point-x>1459</point-x>
+                            <point-y>2146</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K51" idkmad="K1043">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                        <task classkmad="tache.Task" id-task-actors-list="K1034 " id-task-events-list="K152 " id-task-eventtrigger="K150" id-task-label="K23" id-task-point="K1010" idkmad="K1011">
+                            <task-name>Mettre en place les cellules</task-name>
+                            <task-numero>1.1.1.2.1</task-numero>
+                            <task-observation>Joindre les élus d'astreintes et leur demander de rejoindre leur cellule de crise respective
+A défaut contacter les suppléants
+Joindre les benevoles et leur demander de rejoindre leur cellule de crise respective</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K1010">
+                                <point-x>1370</point-x>
+                                <point-y>2315</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K106" idkmad="K1034">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K1035 " id-task-events-list="K153 " id-task-eventtrigger="K152" id-task-label="K1141" id-task-point="K1013" idkmad="K1014">
+                            <task-name>Preparer les mesures de sauvegarde</task-name>
+                            <task-numero>1.1.1.2.2</task-numero>
+                            <task-observation>Chaque cellule ouvre sa mallette de gestion de crise
+Chaque cellule se muni de sa fiche d'armement
+Chaque cellule renseigne son organigramme de crise</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K1013">
+                                <point-x>1581</point-x>
+                                <point-y>2315</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K154" idkmad="K1035">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K1042 " id-task-events-list="K151 " id-task-eventtrigger="K150" id-task-label="K1137" id-task-point="K1025" idkmad="K1026">
+                        <task-name>Ressources en secours</task-name>
+                        <task-numero>1.1.1.3</task-numero>
+                        <task-observation>Suite au diagnostic terrain le COS identifie les besoins en secours: Sapeurs pompiers à mobiliser, besoin ou non des forces de l'ordre et des services d'urgence.</task-observation>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K1025">
+                            <point-x>1737</point-x>
+                            <point-y>2146</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K105" idkmad="K1042">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K1040 " id-task-events-list="K179 " id-task-eventtrigger="K168" id-task-label="K1139" id-task-point="K1028" id-task-subtasks-list="K1017 K1020 " idkmad="K1029">
+                        <task-name>Informer les autorités</task-name>
+                        <task-numero>1.1.1.4</task-numero>
+                        <task-observation>Informer les autorités de l'armement du PCS et point de situation sur l'évolution de l'évenement. Conflit entre le DOS et le COS dans la nature de la transmission des informations aux autorités. Préfecture, conseil générale, SDIS, etat major.
+</task-observation>
+                        <task-executant>ABS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>SEQ</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K1028">
+                            <point-x>1978</point-x>
+                            <point-y>2146</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K51" idkmad="K1040">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                        <task classkmad="tache.Task" id-task-actors-list="K1037 K1038 " id-task-events-list="K202 " id-task-eventtrigger="K1149" id-task-label="K1139" id-task-point="K1016" idkmad="K1017">
+                            <task-name>Synthèse des infos</task-name>
+                            <task-numero>1.1.1.4.1</task-numero>
+                            <task-observation>NEntrées multiples= Diag1+Diag2+ toutes informations en cours de l'evenement</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K1016">
+                                <point-x>1895</point-x>
+                                <point-y>2315</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K105" idkmad="K1037">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                            <actor classkmad="tache.Actor" id-user="K177" idkmad="K1038">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K1039 " id-task-events-list="K168 " id-task-eventtrigger="K202" id-task-label="K1139" id-task-point="K1019" idkmad="K1020">
+                            <task-name>Point de situation</task-name>
+                            <task-numero>1.1.1.4.2</task-numero>
+                            <task-observation/>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K1019">
+                                <point-x>2115</point-x>
+                                <point-y>2315</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K51" idkmad="K1039">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K1041 " id-task-events-list="K204 " id-task-eventtrigger="K202" id-task-label="K1141" id-task-point="K1031" idkmad="K1032">
+                        <task-name>Ouvrir la main courante</task-name>
+                        <task-numero>1.1.1.5</task-numero>
+                        <task-observation>Il s'agit pour chaque cellule de renseigner leur mains courantes avec les premières actions qui les concernent, les premieres informations sur l'evenement, les premièrs retour de la population, les synthèse du diagnostic terrain reçu.</task-observation>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K1031">
+                            <point-x>2193</point-x>
+                            <point-y>2146</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K155" idkmad="K1041">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K372 " id-task-events-list="K373 " id-task-label="K23" id-task-point="K283" id-task-subtasks-list="K263 K281 " idkmad="K284">
+                    <task-name>Gerer les besoins et les moyens</task-name>
+                    <task-numero>1.1.2</task-numero>
+                    <task-observation>Nentrées= Sommes des Nsorties des taches filles</task-observation>
+                    <task-executant>ABS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>PAR</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K283">
+                        <point-x>2019</point-x>
+                        <point-y>1452</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K286" idkmad="K372">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                    <task classkmad="tache.Task" id-task-actors-list="K376 K435 " id-task-events-list="K727 K722 " id-task-eventtrigger="K150" id-task-label="K1138" id-task-point="K262" id-task-subtasks-list="K254 K257 " idkmad="K263">
+                        <task-name>Gerer les populations</task-name>
+                        <task-numero>1.1.2.1</task-numero>
+                        <task-observation>Le rôle de cette cellule dans cette fonction est d'évaluer les besoins. Le conflit de norme se fera avec la logistique. Moyens de la commune non dimensionnés pour les besoins ou besoins sur-évalués par rapport aux moyens</task-observation>
+                        <task-executant>ABS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>PAR</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K262">
+                            <point-x>1440</point-x>
+                            <point-y>1602</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K360" idkmad="K376">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                        <actor classkmad="tache.Actor" id-user="K359" idkmad="K435">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                        <task classkmad="tache.Task" id-task-actors-list="K379 " id-task-events-list="K367 " id-task-eventtrigger="K150" id-task-label="K1138" id-task-point="K253" idkmad="K254">
+                            <task-name>Evaluer les besoins</task-name>
+                            <task-numero>1.1.2.1.1</task-numero>
+                            <task-observation>Evaluer les besoins en eau, nourriture, éléctricité, chauffage, secour complémentaire</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K253">
+                                <point-x>1294</point-x>
+                                <point-y>1752</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K359" idkmad="K379">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K377 " id-task-events-list="K365 " id-task-eventtrigger="K150" id-task-label="K1138" id-task-point="K256" idkmad="K257">
+                            <task-name>Recenser les personnes sinistrées</task-name>
+                            <task-numero>1.1.2.1.2</task-numero>
+                            <task-observation>Selon les remontés du terrain par les agents de surveillance, les secours,les appels téléphoniques definir le nombre de personne à déplacer et ou à soutenir à leur domicile</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K256">
+                                <point-x>1478</point-x>
+                                <point-y>1755</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K359" idkmad="K377">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K384 " id-task-events-list="K594 " id-task-eventtrigger="K1149" id-task-label="K1140" id-task-point="K280" id-task-subtasks-list="K464 K467 K278 K275 K269 K266 " idkmad="K281">
+                        <task-name>Gerer l'intervention de sauvegarde</task-name>
+                        <task-numero>1.1.2.2</task-numero>
+                        <task-observation>Assurer les moyens logistiques nécessaire à definir le périmètre de sauvegarde, à gerer les voies d'accès, à rendre disponible le matériel logistique, à maintenir les réseau en état, à contacter des entreprises exterieures selon le besoin
+Nentrées= Sommes des sorties des taches filles+diag1</task-observation>
+                        <task-executant>ABS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>SEQ</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K280">
+                            <point-x>2210</point-x>
+                            <point-y>1606</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K39" idkmad="K384">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                        <task classkmad="tache.Task" id-task-actors-list="K469 " id-task-events-list="K471 " id-task-eventtrigger="K150" id-task-label="K1140" id-task-point="K463" idkmad="K464">
+                            <task-name>Preserver les réseaux de distribution</task-name>
+                            <task-numero>1.1.2.2.1</task-numero>
+                            <task-observation/>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K463">
+                                <point-x>1606</point-x>
+                                <point-y>1895</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K34" idkmad="K469">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K470 " id-task-events-list="K471 " id-task-eventtrigger="K472" id-task-label="K1140" id-task-point="K466" idkmad="K467">
+                            <task-name>Mettre en place un réseau paliatif</task-name>
+                            <task-numero>1.1.2.2.2</task-numero>
+                            <task-observation>OPT= Si réseau de distribution HS</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>true</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K466">
+                                <point-x>1776</point-x>
+                                <point-y>1752</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K34" idkmad="K470">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K436 " id-task-events-list="K387 " id-task-eventtrigger="K150" id-task-label="K1140" id-task-point="K277" idkmad="K278">
+                            <task-name>Préserver le réseau communication</task-name>
+                            <task-numero>1.1.2.2.3</task-numero>
+                            <task-observation/>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K277">
+                                <point-x>1898</point-x>
+                                <point-y>1896</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K34" idkmad="K436">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K380 " id-task-events-list="K386 " id-task-eventtrigger="K385" id-task-label="K1140" id-task-point="K274" idkmad="K275">
+                            <task-name>Mettre en place un réseau paliatif</task-name>
+                            <task-numero>1.1.2.2.4</task-numero>
+                            <task-observation>OPT=Si reseau de communication HS</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>true</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K274">
+                                <point-x>2041</point-x>
+                                <point-y>1748</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K34" idkmad="K380">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K382 " id-task-events-list="K390 " id-task-eventtrigger="K388" id-task-label="K1140" id-task-point="K268" idkmad="K269">
+                            <task-name>Gerer le matériel disponible</task-name>
+                            <task-numero>1.1.2.2.5</task-numero>
+                            <task-observation>Lister le matériel disponible dans la communes selon les besoins identifier par le diagnostig et la cellule soutien population</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K268">
+                                <point-x>2193</point-x>
+                                <point-y>1898</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K34" idkmad="K382">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K383 " id-task-events-list="K392 " id-task-eventtrigger="K391" id-task-label="K1140" id-task-point="K265" idkmad="K266">
+                            <task-name>Utiliser du renfort</task-name>
+                            <task-numero>1.1.2.2.6</task-numero>
+                            <task-observation>Rendre disponible le matériel, solliciter de l'aide exterieur.
+OPT= Si ressources en matériels insuffisantes ou non disponibles.</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>true</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K265">
+                                <point-x>2321</point-x>
+                                <point-y>1752</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K34" idkmad="K383">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                    </task>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K476 " id-task-events-list="K479 " id-task-eventtrigger="K477" id-task-label="K1137" id-task-point="K293" id-task-subtasks-list="K288 K291 " idkmad="K294">
+                    <task-name>Gerer l'intervention de secour</task-name>
+                    <task-numero>1.1.3</task-numero>
+                    <task-observation>Le COS sur la base des information terrains décide de sa stratégie de secours et des moyens qu'il va allouer à celle-ci.</task-observation>
+                    <task-executant>ABS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>SEQ</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K293">
+                        <point-x>2573</point-x>
+                        <point-y>1454</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K105" idkmad="K476">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                    <task classkmad="tache.Task" id-task-actors-list="K474 " id-task-events-list="K477 " id-task-eventtrigger="K1151" id-task-label="K1137" id-task-point="K287" idkmad="K288">
+                        <task-name>Definir les moyens de secours</task-name>
+                        <task-numero>1.1.3.1</task-numero>
+                        <task-observation/>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K287">
+                            <point-x>2478</point-x>
+                            <point-y>1749</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K102" idkmad="K474">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K475 " id-task-events-list="K479 " id-task-eventtrigger="K477" id-task-label="K1137" id-task-point="K290" idkmad="K291">
+                        <task-name>utiliser du renfort</task-name>
+                        <task-numero>1.1.3.2</task-numero>
+                        <task-observation>OPT= Si les moyens de secours locaux ne sont pas suffisant</task-observation>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>true</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K290">
+                            <point-x>2727</point-x>
+                            <point-y>1748</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K102" idkmad="K475">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K488 " id-task-events-list="K371 " id-task-eventtrigger="K202" id-task-label="K1139" id-task-point="K302" id-task-subtasks-list="K300 K297 " idkmad="K303">
+                    <task-name>Gerer la main courante</task-name>
+                    <task-numero>1.1.4</task-numero>
+                    <task-observation/>
+                    <task-executant>ABS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>PAR</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K302">
+                        <point-x>2881</point-x>
+                        <point-y>1454</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K155" idkmad="K488">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                    <task classkmad="tache.Task" id-task-actors-list="K489 " id-task-events-list="K202 " id-task-eventtrigger="K204" id-task-label="K1139" id-task-point="K299" idkmad="K300">
+                        <task-name>sauvegarde informations</task-name>
+                        <task-numero>1.1.4.1</task-numero>
+                        <task-observation/>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K299">
+                            <point-x>2790</point-x>
+                            <point-y>1892</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K52" idkmad="K489">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K490 " id-task-events-list="K202 " id-task-eventtrigger="K486" id-task-label="K1139" id-task-point="K296" idkmad="K297">
+                        <task-name>Gerer les appels </task-name>
+                        <task-numero>1.1.4.2</task-numero>
+                        <task-observation/>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K296">
+                            <point-x>2992</point-x>
+                            <point-y>1895</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K52" idkmad="K490">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K483 " id-task-events-list="K479 " id-task-label="K23" id-task-point="K311" id-task-subtasks-list="K306 K596 K309 " idkmad="K312">
+                    <task-name>Identifier les vulnéarbilités</task-name>
+                    <task-numero>1.1.5</task-numero>
+                    <task-observation>Nentrée= somme des taches filles</task-observation>
+                    <task-executant>ABS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>PAR</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K311">
+                        <point-x>3199</point-x>
+                        <point-y>1455</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K286" idkmad="K483">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                    <task classkmad="tache.Task" id-task-actors-list="K481 " id-task-events-list="K479 " id-task-eventtrigger="K150" id-task-label="K23" id-task-point="K305" idkmad="K306">
+                        <task-name>Evaluer les domages</task-name>
+                        <task-numero>1.1.5.1</task-numero>
+                        <task-observation>Nsortie= Définition des priorités</task-observation>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K305">
+                            <point-x>3121</point-x>
+                            <point-y>1893</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K10" idkmad="K481">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K598 " id-task-events-list="K479 " id-task-eventtrigger="K150" id-task-label="K23" id-task-point="K595" idkmad="K596">
+                        <task-name>Définir les périmètres</task-name>
+                        <task-numero>1.1.5.2</task-numero>
+                        <task-observation>Nsortie= Définir les périmètres de sécurité, les périmètres d'evacuation des populations, et les périmètres d'accueil des populations</task-observation>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K595">
+                            <point-x>3284</point-x>
+                            <point-y>1896</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K10" idkmad="K598">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K482 " id-task-events-list="K485 " id-task-eventtrigger="K484" id-task-label="K23" id-task-point="K308" idkmad="K309">
+                        <task-name>Definir les ressources</task-name>
+                        <task-numero>1.1.5.3</task-numero>
+                        <task-observation/>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K308">
+                            <point-x>3450</point-x>
+                            <point-y>1895</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K10" idkmad="K482">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                </task>
+            </task>
+            <task classkmad="tache.Task" id-task-actors-list="K616 K617 K619 " id-task-events-list="K487 " id-task-label="K23" id-task-point="K613" id-task-subtasks-list="K621 K600 K606 K610 " idkmad="K614">
+                <task-name>Alerter</task-name>
+                <task-numero>1.2</task-numero>
+                <task-observation>Conflits
+1. Conflit de de rôle et fonction peut survenir sur cette tache du fait de la pluralité des acteurs qui réalise cette tache dans la même fonction, dans des cellules différentes cellule et en parrallèle.
+2. Conflit de communication entre les informations transmises aux victimes, aux populations et aux responsables d'établissement sur l'evenement
+Nentrée= Sommes des sorties des taches filles</task-observation>
+                <task-executant>ABS</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>PAR</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K613">
+                    <point-x>1335</point-x>
+                    <point-y>1049</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K50" idkmad="K616">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+                <actor classkmad="tache.Actor" id-user="K286" idkmad="K617">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+                <actor classkmad="tache.Actor" id-user="K177" idkmad="K619">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+                <task classkmad="tache.Task" id-task-actors-list="K1148 " id-task-events-list="K487 " id-task-eventtrigger="K150" id-task-label="K1137" id-task-point="K620" idkmad="K621">
+                    <task-name>Renseigner les victimes</task-name>
+                    <task-numero>1.2.1</task-numero>
+                    <task-observation/>
+                    <task-executant>USER</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K620">
+                        <point-x>1382</point-x>
+                        <point-y>1288</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K102" idkmad="K1148">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K602 " id-task-events-list="K487 " id-task-eventtrigger="K390" id-task-label="K1140" id-task-point="K599" idkmad="K600">
+                    <task-name>Mettre en place les DA</task-name>
+                    <task-numero>1.2.2</task-numero>
+                    <task-observation>Mettre en place les dispositifs d'alerte communaux adaptés (EMA, sirène, téléphone, SMS,  porte à porte)</task-observation>
+                    <task-executant>USER</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K599">
+                        <point-x>1566</point-x>
+                        <point-y>1287</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K34" idkmad="K602">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K608 " id-task-events-list="K62 " id-task-eventtrigger="K603" id-task-label="K1139" id-task-point="K605" idkmad="K606">
+                    <task-name>Alerter les populations</task-name>
+                    <task-numero>1.2.3</task-numero>
+                    <task-observation>Il s'agit de définir les messages d'alerte à la population et les cibles devant beneficier du message</task-observation>
+                    <task-executant>USER</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K605">
+                        <point-x>1737</point-x>
+                        <point-y>1288</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K52" idkmad="K608">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K612 " id-task-events-list="K604 " id-task-eventtrigger="K603" id-task-label="K1139" id-task-point="K609" idkmad="K610">
+                    <task-name>Alerter les responsables d'etablissement</task-name>
+                    <task-numero>1.2.4</task-numero>
+                    <task-observation>Il s'agit d'informer les responsables d'établisement scolaires, médicaux, retraite...de l'evenement et de leur demander de déclencher leurs propres plan de mise en sécurité. PSM pour les écoles à minima</task-observation>
+                    <task-executant>USER</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K609">
+                        <point-x>1910</point-x>
+                        <point-y>1288</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K52" idkmad="K612">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                </task>
+            </task>
+            <task classkmad="tache.Task" id-task-actors-list="K553 " id-task-events-list="K480 " id-task-label="K23" id-task-point="K550" id-task-subtasks-list="K540 K531 " idkmad="K551">
+                <task-name>Agir</task-name>
+                <task-numero>1.3</task-numero>
+                <task-observation>Conflits:
+1. Conflits de rôle et de fonction. Le COS peut réquisitionner les ressources humaines de la commune définies dans la tache placer les ressources humaines sans aval du DOS.
+2. Conflits de stratégie terrain: La définition des transports et les itinéraires de sauvegarde peuvent etre contraire ou en conflit avec ceux du secour. Le COS est préscripteur dans ce cas et le rôle du RAC et du réferent PCO sont fondamentales
+3. Conflits Ressources moyens objectifs: Système alternatif: Les ressources dépendents des moyens, mais la mise en oeuvre des moyens dépend des ressources disponibles dans le temps
+Nentrées= Sommes des sorties des taches filles</task-observation>
+                <task-executant>ABS</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>ALT</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K550">
+                    <point-x>1453</point-x>
+                    <point-y>858</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K51" idkmad="K553">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+                <task classkmad="tache.Task" id-task-actors-list="K548 K549 " id-task-events-list="K555 " id-task-eventtrigger="K557" id-task-label="K23" id-task-point="K539" id-task-subtasks-list="K537 K534 " idkmad="K540">
+                    <task-name>Acheminer le matériel</task-name>
+                    <task-numero>1.3.1</task-numero>
+                    <task-observation/>
+                    <task-executant>ABS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>PAR</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K539">
+                        <point-x>2473</point-x>
+                        <point-y>1003</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K286" idkmad="K548">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                    <actor classkmad="tache.Actor" id-user="K177" idkmad="K549">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                    <task classkmad="tache.Task" id-task-actors-list="K546 " id-task-events-list="K557 " id-task-eventtrigger="K1508" id-task-label="K1140" id-task-point="K536" id-task-subtasks-list="K519 K522 " idkmad="K537">
+                        <task-name>Acheminer le materiel de sauvegarde</task-name>
+                        <task-numero>1.3.1.1</task-numero>
+                        <task-observation/>
+                        <task-executant>ABS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>PAR</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K536">
+                            <point-x>2253</point-x>
+                            <point-y>1141</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K39" idkmad="K546">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                        <task classkmad="tache.Task" id-task-actors-list="K543 " id-task-events-list="K559 " id-task-eventtrigger="K1149" id-task-label="K1140" id-task-point="K518" idkmad="K519">
+                            <task-name>Définir les itinéraires</task-name>
+                            <task-numero>1.3.1.1.1</task-numero>
+                            <task-observation>Nentrées= Diag 1+définir les besoins de la popopulation+diag2</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K518">
+                                <point-x>2219</point-x>
+                                <point-y>1287</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K34" idkmad="K543">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K542 " id-task-events-list="K1508 " id-task-label="K1140" id-task-point="K521" idkmad="K522">
+                            <task-name>Définir le transport</task-name>
+                            <task-numero>1.3.1.1.2</task-numero>
+                            <task-observation/>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K521">
+                                <point-x>2412</point-x>
+                                <point-y>1287</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K34" idkmad="K542">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K547 " id-task-events-list="K557 " id-task-eventtrigger="K478" id-task-label="K1137" id-task-point="K533" id-task-subtasks-list="K525 K528 " idkmad="K534">
+                        <task-name>Acheminer le materiel de secour</task-name>
+                        <task-numero>1.3.1.2</task-numero>
+                        <task-observation/>
+                        <task-executant>ABS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>PAR</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K533">
+                            <point-x>2620</point-x>
+                            <point-y>1141</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K105" idkmad="K547">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                        <task classkmad="tache.Task" id-task-actors-list="K544 " id-task-events-list="K559 " id-task-eventtrigger="K1151" id-task-label="K1137" id-task-point="K524" idkmad="K525">
+                            <task-name>Définir les itinaires</task-name>
+                            <task-numero>1.3.1.2.1</task-numero>
+                            <task-observation/>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K524">
+                                <point-x>2591</point-x>
+                                <point-y>1288</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K102" idkmad="K544">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K545 " id-task-events-list="K478 " id-task-eventtrigger="K1149" id-task-label="K1137" id-task-point="K527" idkmad="K528">
+                            <task-name>Définir le transport</task-name>
+                            <task-numero>1.3.1.2.2</task-numero>
+                            <task-observation>Nentrées= Voies d'acces pour le matériel+moyens de secours définis</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K527">
+                                <point-x>2766</point-x>
+                                <point-y>1288</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K102" idkmad="K545">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                    </task>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K554 " id-task-events-list="K205 K556 " id-task-eventtrigger="K555" id-task-label="K23" id-task-point="K530" idkmad="K531">
+                    <task-name>Placer les ressources humaines</task-name>
+                    <task-numero>1.3.2</task-numero>
+                    <task-observation/>
+                    <task-executant>USER</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K530">
+                        <point-x>2652</point-x>
+                        <point-y>1004</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K10" idkmad="K554">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                </task>
+            </task>
+            <task classkmad="tache.Task" id-task-actors-list="K736 " id-task-events-list="K741 K479 " id-task-label="K23" id-task-point="K733" id-task-subtasks-list="K689 K681 " idkmad="K734">
+                <task-name>Organiser la mise en sécurité</task-name>
+                <task-numero>1.4</task-numero>
+                <task-observation>Nentrée= Sommes des sorties des taches filles</task-observation>
+                <task-executant>ABS</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>PAR</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K733">
+                    <point-x>1685</point-x>
+                    <point-y>300</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K286" idkmad="K736">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+                <task classkmad="tache.Task" id-task-actors-list="K716 " id-task-events-list="K479 " id-task-label="K1137" id-task-point="K688" id-task-subtasks-list="K694 K698 K705 " idkmad="K689">
+                    <task-name>Securiser les victimes</task-name>
+                    <task-numero>1.4.1</task-numero>
+                    <task-observation>Dans cette taches des conflits de normes peuvent apparaitre entre les différents corps de métiers intervenant pour les secours. Ce point n'est pas détaillé dans le sujet du fait du périmètre d'étude choisit.
+Nentrée= Sommes des sorties des taches filles</task-observation>
+                    <task-executant>ABS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>SEQ</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K688">
+                        <point-x>1583</point-x>
+                        <point-y>452</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K105" idkmad="K716">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                    <task classkmad="tache.Task" id-task-actors-list="K696 " id-task-events-list="K1240 " id-task-eventtrigger="K1151" id-task-label="K1137" id-task-point="K693" idkmad="K694">
+                        <task-name>Securiser les ouvrages</task-name>
+                        <task-numero>1.4.1.1</task-numero>
+                        <task-observation/>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K693">
+                            <point-x>1533</point-x>
+                            <point-y>597</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K102" idkmad="K696">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K700 " id-task-events-list="K715 K722 " id-task-eventtrigger="K1151" id-task-label="K1137" id-task-point="K697" idkmad="K698">
+                        <task-name>Securiser les voies d'accès</task-name>
+                        <task-numero>1.4.1.2</task-numero>
+                        <task-observation/>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K697">
+                            <point-x>1709</point-x>
+                            <point-y>597</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K102" idkmad="K700">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K714 " id-task-events-list="K479 " id-task-label="K1137" id-task-point="K704" id-task-subtasks-list="K708 K712 " idkmad="K705">
+                        <task-name>Périmetre de sécurité</task-name>
+                        <task-numero>1.4.1.3</task-numero>
+                        <task-observation/>
+                        <task-executant>ABS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>PAR</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K704">
+                            <point-x>1918</point-x>
+                            <point-y>597</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K105" idkmad="K714">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                        <task classkmad="tache.Task" id-task-actors-list="K710 " id-task-events-list="K479 " id-task-eventtrigger="K1151" id-task-label="K1137" id-task-point="K707" idkmad="K708">
+                            <task-name>Sectorisation</task-name>
+                            <task-numero>1.4.1.3.1</task-numero>
+                            <task-observation/>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K707">
+                                <point-x>1829</point-x>
+                                <point-y>728</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K102" idkmad="K710">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                        <task classkmad="tache.Task" id-task-actors-list="K717 " id-task-events-list="K559 " id-task-eventtrigger="K715" id-task-label="K1137" id-task-point="K711" idkmad="K712">
+                            <task-name>Itinéraires</task-name>
+                            <task-numero>1.4.1.3.2</task-numero>
+                            <task-observation>Définir les itinéraires d'accès des secours et d'évacuation des victimes</task-observation>
+                            <task-executant>USER</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K711">
+                                <point-x>2010</point-x>
+                                <point-y>728</point-y>
+                            </point>
+                            <actor classkmad="tache.Actor" id-user="K102" idkmad="K717">
+                                <actor-experience>UNK</actor-experience>
+                            </actor>
+                        </task>
+                    </task>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K1143 " id-task-events-list="K1328 " id-task-label="K1140" id-task-point="K680" id-task-subtasks-list="K669 K678 K672 K675 " idkmad="K681">
+                    <task-name>Sécuriser les populations</task-name>
+                    <task-numero>1.4.2</task-numero>
+                    <task-observation>Nentrée= Sommes des sorties des taches filles</task-observation>
+                    <task-executant>ABS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>PAR</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K680">
+                        <point-x>2064</point-x>
+                        <point-y>452</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K39" idkmad="K1143">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                    <task classkmad="tache.Task" id-task-actors-list="K1144 " id-task-events-list="K479 " id-task-eventtrigger="K373" id-task-label="K1140" id-task-point="K668" idkmad="K669">
+                        <task-name>Hebergement</task-name>
+                        <task-numero>1.4.2.1</task-numero>
+                        <task-observation>Définir les lieux d herbergement pour les personnes dans le besoins</task-observation>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K668">
+                            <point-x>2089</point-x>
+                            <point-y>597</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K34" idkmad="K1144">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K1145 " id-task-events-list="K479 " id-task-eventtrigger="K373" id-task-label="K1140" id-task-point="K677" idkmad="K678">
+                        <task-name>Rassemblement</task-name>
+                        <task-numero>1.4.2.2</task-numero>
+                        <task-observation/>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K677">
+                            <point-x>2212</point-x>
+                            <point-y>597</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K34" idkmad="K1145">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K1146 " id-task-events-list="K479 " id-task-eventtrigger="K373" id-task-label="K1140" id-task-point="K671" idkmad="K672">
+                        <task-name>Retauration</task-name>
+                        <task-numero>1.4.2.3</task-numero>
+                        <task-observation>Assurer la prise des repas sur les lieux d'hergement, les lieux d'accueil des personnes vulnérables et pour les écoles</task-observation>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K671">
+                            <point-x>2339</point-x>
+                            <point-y>597</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K34" idkmad="K1146">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K1147 " id-task-events-list="K479 " id-task-eventtrigger="K1149" id-task-label="K1140" id-task-point="K674" idkmad="K675">
+                        <task-name>Itinéraires</task-name>
+                        <task-numero>1.4.2.4</task-numero>
+                        <task-observation>Définir les itinéraires à emprunter selon les lieux à évacuer et les lieux de sauvegarde.
+Nentrées= Personnes à évacuer + voies d'accès sécurisées</task-observation>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K674">
+                            <point-x>2463</point-x>
+                            <point-y>597</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K34" idkmad="K1147">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                </task>
+            </task>
+            <task classkmad="tache.Task" id-task-actors-list="K740 " id-task-events-list="K487 " id-task-eventtrigger="K741" id-task-label="K1139" id-task-point="K737" idkmad="K738">
+                <task-name>Communiquer</task-name>
+                <task-numero>1.5</task-numero>
+                <task-observation>Information des populations et des médias sur l'etat de sauvegarde</task-observation>
+                <task-executant>USER</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>LEAF</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K737">
+                    <point-x>1927</point-x>
+                    <point-y>300</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K52" idkmad="K740">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+            </task>
+        </task>
+        <task classkmad="tache.Task" id-task-actors-list="K763 " id-task-events-list="K480 " id-task-label="K1137" id-task-point="K760" id-task-subtasks-list="K748 K752 K756 K765 " idkmad="K761">
+            <task-name>Secourir</task-name>
+            <task-numero>2</task-numero>
+            <task-observation>Conflits:
+1. Conflit de communication: Tache communique: La double communication peut créer un conflit de communication Au final, sur la fonction secourrir c'est le COS qui reste légitime
+L'identification des autres sources de conflits demandes un second travail sur les normes de la fonction secour (SDIS, police, urgences)
+Nentrée= Sommes des sorties des taches filles</task-observation>
+            <task-executant>ABS</task-executant>
+            <task-modality>COGN</task-modality>
+            <task-optional>false</task-optional>
+            <task-interruptible>false</task-interruptible>
+            <task-decomposition>PAR</task-decomposition>
+            <task-precondition>true</task-precondition>
+            <task-effetsdebord>void</task-effetsdebord>
+            <task-iteration>[1]</task-iteration>
+            <point classkmad="tache.Point" idkmad="K760">
+                <point-x>2449</point-x>
+                <point-y>162</point-y>
+            </point>
+            <actor classkmad="tache.Actor" id-user="K51" idkmad="K763">
+                <actor-experience>UNK</actor-experience>
+            </actor>
+            <task classkmad="tache.Task" id-task-actors-list="K750 " id-task-events-list="K202 " id-task-eventtrigger="K487" id-task-label="K1137" id-task-point="K747" idkmad="K748">
+                <task-name>Centraliser les infos</task-name>
+                <task-numero>2.1</task-numero>
+                <task-observation/>
+                <task-executant>USER</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>LEAF</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K747">
+                    <point-x>2080</point-x>
+                    <point-y>299</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K286" idkmad="K750">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+            </task>
+            <task classkmad="tache.Task" id-task-actors-list="K754 " id-task-events-list="K179 " id-task-eventtrigger="K202" id-task-label="K1137" id-task-point="K751" idkmad="K752">
+                <task-name>Liens avec les autorités</task-name>
+                <task-numero>2.2</task-numero>
+                <task-observation/>
+                <task-executant>USER</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>LEAF</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K751">
+                    <point-x>2253</point-x>
+                    <point-y>298</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K51" idkmad="K754">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+            </task>
+            <task classkmad="tache.Task" id-task-actors-list="K758 K866 " id-task-events-list="K487 " id-task-eventtrigger="K202" id-task-label="K1141" id-task-point="K755" idkmad="K756">
+                <task-name>Communiquer</task-name>
+                <task-numero>2.3</task-numero>
+                <task-observation>Libellés: Multiples, le porte paroles de la cellule de coordination peut à ce stade communiquer. Il y aura aussi un communication possible par le COS.
+Cette double communication peut créer un conflit de communication
+Au final, sur la fonction secourrir c'est le COS qui reste légitime.
+Sortie: Information déstinée aux populations et aux médias</task-observation>
+                <task-executant>USER</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>LEAF</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K755">
+                    <point-x>2449</point-x>
+                    <point-y>298</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K50" idkmad="K758">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+                <actor classkmad="tache.Actor" id-user="K105" idkmad="K866">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+            </task>
+            <task classkmad="tache.Task" id-task-actors-list="K767 " id-task-events-list="K479 " id-task-label="K1137" id-task-point="K764" id-task-subtasks-list="K772 K775 K769 " idkmad="K765">
+                <task-name>Organiser le secour</task-name>
+                <task-numero>2.4</task-numero>
+                <task-observation>Nentrée= Sommes des sorties des taches filles</task-observation>
+                <task-executant>ABS</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>SEQ</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K764">
+                    <point-x>2593</point-x>
+                    <point-y>298</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K105" idkmad="K767">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+                <task classkmad="tache.Task" id-task-actors-list="K863 " id-task-events-list="K777 " id-task-eventtrigger="K1151" id-task-label="K1137" id-task-point="K771" idkmad="K772">
+                    <task-name>Porter Secours</task-name>
+                    <task-numero>2.4.1</task-numero>
+                    <task-observation/>
+                    <task-executant>USER</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K771">
+                        <point-x>2316</point-x>
+                        <point-y>441</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K102" idkmad="K863">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K864 " id-task-events-list="K779 " id-task-eventtrigger="K777" id-task-label="K1137" id-task-point="K774" idkmad="K775">
+                    <task-name>Suivre les victimes</task-name>
+                    <task-numero>2.4.2</task-numero>
+                    <task-observation>Etablir la liste des victimes</task-observation>
+                    <task-executant>USER</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K774">
+                        <point-x>2454</point-x>
+                        <point-y>437</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K102" idkmad="K864">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K865 " id-task-events-list="K780 " id-task-eventtrigger="K779" id-task-label="K1137" id-task-point="K768" idkmad="K769">
+                    <task-name>Faire le bilan</task-name>
+                    <task-numero>2.4.3</task-numero>
+                    <task-observation>Etablir la liste des victimes, faire l'état de suivi médical.</task-observation>
+                    <task-executant>USER</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K768">
+                        <point-x>2623</point-x>
+                        <point-y>437</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K102" idkmad="K865">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                </task>
+            </task>
+        </task>
+        <task classkmad="tache.Task" id-task-actors-list="K890 " id-task-events-list="K480 " id-task-label="K23" id-task-point="K887" id-task-subtasks-list="K884 K879 " idkmad="K888">
+            <task-name>Accompagner</task-name>
+            <task-numero>3</task-numero>
+            <task-observation>Sources de conflits
+1. Conflits dans les rôles et les fonctions: La cellule soutien aux population peut à ce stade décider de nouveaux lieux d'acccueil (hebergement et restauration). Cette tache est afféctée à la cellule logistique dans la fonction gestion et ne doit pas être revue à ce stade, sans la cellule soutien logistique.
+2.  Conflits de communication: La cellule communication peut communiquer des informations à la population contraire aux mesures prises pour l'organisation de l'accompagnement ou non prévues
+Nentrée= Sommes des sorties des taches filles</task-observation>
+            <task-executant>ABS</task-executant>
+            <task-modality>COGN</task-modality>
+            <task-optional>false</task-optional>
+            <task-interruptible>false</task-interruptible>
+            <task-decomposition>ALT</task-decomposition>
+            <task-precondition>true</task-precondition>
+            <task-effetsdebord>void</task-effetsdebord>
+            <task-iteration>[1]</task-iteration>
+            <point classkmad="tache.Point" idkmad="K887">
+                <point-x>2994</point-x>
+                <point-y>156</point-y>
+            </point>
+            <actor classkmad="tache.Actor" id-user="K51" idkmad="K890">
+                <actor-experience>UNK</actor-experience>
+            </actor>
+            <task classkmad="tache.Task" id-task-actors-list="K886 " id-task-events-list="K882 K365 " id-task-label="K23" id-task-point="K883" id-task-subtasks-list="K875 K861 K1417 " idkmad="K884">
+                <task-name>Organiser l'accompagnement</task-name>
+                <task-numero>3.1</task-numero>
+                <task-observation>Nentrée= Sommes des sorties des taches filles</task-observation>
+                <task-executant>ABS</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>PAR</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K883">
+                    <point-x>2828</point-x>
+                    <point-y>299</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K10" idkmad="K886">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+                <task classkmad="tache.Task" id-task-actors-list="K877 " id-task-events-list="K873 " id-task-eventtrigger="K722" id-task-label="K1142" id-task-point="K874" idkmad="K875">
+                    <task-name>Soutien psychologique</task-name>
+                    <task-numero>3.1.1</task-numero>
+                    <task-observation>OPT= Si la cellule population ou communication identifie des personnes en detresse psychologique</task-observation>
+                    <task-executant>USER</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>true</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K874">
+                        <point-x>2764</point-x>
+                        <point-y>441</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K871" idkmad="K877">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K870 " id-task-events-list="K479 " id-task-eventtrigger="K1149" id-task-label="K1138" id-task-point="K860" id-task-subtasks-list="K852 K855 K858 " idkmad="K861">
+                    <task-name>Guider les populations sinistrées</task-name>
+                    <task-numero>3.1.2</task-numero>
+                    <task-observation>Nentrées= Prise en charge+définition des lieux d'accueil</task-observation>
+                    <task-executant>ABS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>PAR</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K860">
+                        <point-x>2954</point-x>
+                        <point-y>437</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K360" idkmad="K870">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                    <task classkmad="tache.Task" id-task-actors-list="K867 " id-task-events-list="K873 " id-task-eventtrigger="K727" id-task-label="K1138" id-task-point="K851" idkmad="K852">
+                        <task-name>Encadrer</task-name>
+                        <task-numero>3.1.2.1</task-numero>
+                        <task-observation>Nécessite la tache préalable :mettre en sécurité les population de la fonction Gerer.</task-observation>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K851">
+                            <point-x>2883</point-x>
+                            <point-y>576</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K359" idkmad="K867">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K868 " id-task-events-list="K873 " id-task-eventtrigger="K727" id-task-label="K1138" id-task-point="K854" idkmad="K855">
+                        <task-name>Heberger</task-name>
+                        <task-numero>3.1.2.2</task-numero>
+                        <task-observation/>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K854">
+                            <point-x>3017</point-x>
+                            <point-y>576</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K359" idkmad="K868">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                    <task classkmad="tache.Task" id-task-actors-list="K869 " id-task-events-list="K873 " id-task-eventtrigger="K727" id-task-label="K1138" id-task-point="K857" idkmad="K858">
+                        <task-name>Restaurer</task-name>
+                        <task-numero>3.1.2.3</task-numero>
+                        <task-observation/>
+                        <task-executant>USER</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K857">
+                            <point-x>3141</point-x>
+                            <point-y>576</point-y>
+                        </point>
+                        <actor classkmad="tache.Actor" id-user="K359" idkmad="K869">
+                            <actor-experience>UNK</actor-experience>
+                        </actor>
+                    </task>
+                </task>
+                <task classkmad="tache.Task" id-task-actors-list="K1419 " id-task-events-list="K1149 " id-task-eventtrigger="K778" id-task-label="K23" id-task-point="K1416" idkmad="K1417">
+                    <task-name>Chapelle Aredente</task-name>
+                    <task-numero>3.1.3</task-numero>
+                    <task-observation>OPT= Si personnes décédées</task-observation>
+                    <task-executant>USER</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>true</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K1416">
+                        <point-x>3208</point-x>
+                        <point-y>437</point-y>
+                    </point>
+                    <actor classkmad="tache.Actor" id-user="K10" idkmad="K1419">
+                        <actor-experience>UNK</actor-experience>
+                    </actor>
+                </task>
+            </task>
+            <task classkmad="tache.Task" id-task-actors-list="K881 " id-task-events-list="K62 " id-task-eventtrigger="K882" id-task-label="K1139" id-task-point="K878" idkmad="K879">
+                <task-name>Renseigner</task-name>
+                <task-numero>3.2</task-numero>
+                <task-observation>Il s'agit de renseigner les populations sur les mise en oeuvre de l'accompagnement.</task-observation>
+                <task-executant>USER</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>LEAF</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K878">
+                    <point-x>3097</point-x>
+                    <point-y>294</point-y>
+                </point>
+                <actor classkmad="tache.Actor" id-user="K52" idkmad="K881">
+                    <actor-experience>UNK</actor-experience>
+                </actor>
+            </task>
+        </task>
+    </task>
+    <Individu classkmad="tache.Person" id-organisation="K10 " idkmad="K871">
+        <individu-name>Expert</individu-name>
+        <individu-statut>externes</individu-statut>
+        <individu-role>Interviennent ds un champs spécifique.</individu-role>
+        <id-organisation>K10</id-organisation>
+    </Individu>
+    <event classkmad="tache.Event" idkmad="K872">
+        <event-name>Traumatisme psychologique</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K873">
+        <event-name>Prise en charge</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K882">
+        <event-name>mesure de secour de sauvegarde et d accompagnement definies</event-name>
+    </event>
+    <label classkmad="tache.Label" idkmad="K1137">
+        <label-name>Securite</label-name>
+        <label-color>
+            <label-color-red>255</label-color-red>
+            <label-color-green>102</label-color-green>
+            <label-color-blue>102</label-color-blue>
+        </label-color>
+        <label-visible>true</label-visible>
+        <label-colorvisible>true</label-colorvisible>
+    </label>
+    <label classkmad="tache.Label" idkmad="K1138">
+        <label-name>soutien aux populations</label-name>
+        <label-color>
+            <label-color-red>51</label-color-red>
+            <label-color-green>255</label-color-green>
+            <label-color-blue>0</label-color-blue>
+        </label-color>
+        <label-visible>true</label-visible>
+        <label-colorvisible>true</label-colorvisible>
+    </label>
+    <label classkmad="tache.Label" idkmad="K1139">
+        <label-name>communication</label-name>
+        <label-color>
+            <label-color-red>102</label-color-red>
+            <label-color-green>0</label-color-green>
+            <label-color-blue>102</label-color-blue>
+        </label-color>
+        <label-visible>true</label-visible>
+        <label-colorvisible>true</label-colorvisible>
+    </label>
+    <label classkmad="tache.Label" idkmad="K1140">
+        <label-name>Logistique</label-name>
+        <label-color>
+            <label-color-red>102</label-color-red>
+            <label-color-green>102</label-color-green>
+            <label-color-blue>255</label-color-blue>
+        </label-color>
+        <label-visible>true</label-visible>
+        <label-colorvisible>true</label-colorvisible>
+    </label>
+    <label classkmad="tache.Label" idkmad="K1141">
+        <label-name>Multiples</label-name>
+        <label-color>
+            <label-color-red>204</label-color-red>
+            <label-color-green>204</label-color-green>
+            <label-color-blue>0</label-color-blue>
+        </label-color>
+        <label-visible>true</label-visible>
+        <label-colorvisible>true</label-colorvisible>
+    </label>
+    <label classkmad="tache.Label" idkmad="K1142">
+        <label-name>Acteurs externes</label-name>
+        <label-color>
+            <label-color-red>0</label-color-red>
+            <label-color-green>0</label-color-green>
+            <label-color-blue>0</label-color-blue>
+        </label-color>
+        <label-visible>true</label-visible>
+        <label-colorvisible>true</label-colorvisible>
+    </label>
+    <event classkmad="tache.Event" idkmad="K1149">
+        <event-name>Evenements entree multiples</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K1150">
+        <event-name>Evenements sortie multiples</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K1151">
+        <event-name>Diagnostic terrain 2</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K1240">
+        <event-name>Contenir l evenement</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K1328">
+        <event-name>Definition des lieux d accueil</event-name>
+    </event>
+    <event classkmad="tache.Event" idkmad="K1508">
+        <event-name>moyens de sauvegarde disponible</event-name>
+    </event>
+</kmad-model>
