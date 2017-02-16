@@ -114,14 +114,17 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 		Element root=docSource.getRootElement();		
 		List listeTaches = root.getChildren("task");
 		//la liste ne retourne qu'un suel objet : la tache racine
+		//System.out.println("il y a :"+listeTaches.size()+" filles pour "+root.getName());
 		ecritureTacheITer((Element)listeTaches.get(0));
 		
 	}
 	
 	private void ecritureTacheITer(Element mere){
+		
+		//System.out.println("iteration sur les filles");
 		List listeTaches = mere.getChildren("task");
 		
-		
+		//System.out.println("il y a "+listeTaches.size()+" filles");
 		if(listeTaches.size()>0){
 			//si elle a des filles (tache décomposée), on l'affiche puis on lance l'algo sur les filles
 			ecritureTache(listeTaches,mere);
@@ -146,7 +149,7 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 	
 	
 private void ecritureTache(List noeudFille, Element parent){
-		
+		//System.out.println("J'écris les filles");
 		Realiser realiser = new Realiser();
 		Lexicon frenchlexicon = new simplenlg.lexicon.french.XMLLexicon();
 		NLGFactory nlgFactory = new NLGFactory(frenchlexicon);
@@ -214,24 +217,25 @@ private void ecritureTache(List noeudFille, Element parent){
 			
 			NPPhraseSpec on=nlgFactory.createNounPhrase("on");
 
-			
-			if(seq & !s.getSubject().getFeature("head").toString().equals(on.getFeature("head").toString())){
+			//gestion d'évitement de la répétition des sujets
+			//if(seq & !s.getSubject().getFeature("head").toString().equals(on.getFeature("head").toString())){
 				elements.add(s);
-			}
-			else{
-				c.addCoordinate(s);	
-				
-			}
+				//System.out.println("dans le if");
+			//}
+			//else{
+				//c.addCoordinate(s);	
+				//System.out.println("hors du if");
+			//}
 		}
 		
 		if((elements.size()>0) ) {
 			ClauseCoordinationRule clauseCoord = new ClauseCoordinationRule();
 			List<NLGElement> result = clauseCoord.apply(elements);
-			System.out.println(result.size());
+			//System.out.println(result.size());
 			
 			if ((result.size()==1) && (!elements.get(0).equals(null))){
-				System.out.println(result.size());
-				System.out.println(result.get(0));
+				//System.out.println(result.size());
+				//System.out.println(result.get(0));
 				//l'aggregation a été possible
 				NLGElement aggregated = result.get(0);
 				
@@ -401,6 +405,7 @@ private void ecritureTache(List noeudFille, Element parent){
 		SPhraseSpec phrase;
 		phrase=nlgFactory.createClause();
 		phrase.setSubject(sujet);
+		//System.out.println(verbe);
 		phrase.setVerb(verbe);
 		phrase.setComplement(Comp);
 

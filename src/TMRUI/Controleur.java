@@ -40,8 +40,8 @@ public class Controleur implements ControleurInter {
 		StringBuffer sb = new StringBuffer();
 		int nbLinesRead=0;
 		
-		System.out.println("dans controleur");
-		System.out.println(chemin);
+		//System.out.println("dans controleur");
+		//System.out.println(chemin);
 		try{
 			FileInputStream fis = new FileInputStream(chemin);
 			BufferedReader reader = new BufferedReader (new InputStreamReader(fis));

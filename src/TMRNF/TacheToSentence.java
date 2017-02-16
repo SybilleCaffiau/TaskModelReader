@@ -75,8 +75,9 @@ public class TacheToSentence implements TacheToSentenceInter {
 		phrase.setSubject(sujet);
 		phrase.setVerb(verbe);
 		//phrase.setObject(COD);
-		phrase.setComplement(Comp);
 		phrase.setIndirectObject(COI);
+		phrase.setComplement(Comp);
+		
 		
 		
 		

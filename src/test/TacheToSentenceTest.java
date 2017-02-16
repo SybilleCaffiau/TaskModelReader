@@ -107,9 +107,9 @@ public class TacheToSentenceTest {
 		phrasetest=tts.FairePhrase("on", "Gérer","les messages", "Sophie");
 		
 		assertNotEquals("cas phrase sujet verbe complement et non complement", phrase, phrasetest);
-		
-		phrase.setComplement("les messages");
 		phrase.setIndirectObject("Sophie");
+		phrase.setComplement("les messages");
+		
 		assertEquals("cas phrase sujet verbe complement", phrase, phrasetest);
 	}
 
