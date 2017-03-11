@@ -324,8 +324,14 @@ private void ecritureTache(List noeudFille, Element parent){
 		typeTache=tache.getChild("task-executant").getText();
 		
 		optionnel=tache.getChild("task-optional").getText();
+		try{
+			//System.out.println(tache.getChild("task-descriptioniteration").getText());
+			iter=tache.getChild("task-descriptioniteration").getText();
+		}
+		catch(Exception e){
+			iter=tache.getChild("task-iteration").getText();
+		}
 		
-		iter=tache.getChild("task-iteration").getText();
 		
 		
 		if(typeTache.compareTo("INT")==0){

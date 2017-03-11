@@ -24,7 +24,7 @@ public class KMADToSentenceStructureTest {
 
 	//objet testé et donc utilisé dans toutes les autrs méthodes
 	KMADToSentenceStructure transfo = new KMADToSentenceStructure("testTache.xml");
-	
+	KMADToSentenceStructure transfo2 = new KMADToSentenceStructure("testTache2.xml");
 	
 	//transfo.ecritureMdT();
 	
@@ -90,6 +90,23 @@ public class KMADToSentenceStructureTest {
 "Pour ranger les photos d'un album l'utilisateur choisit un album et l'utilisateur modifie le placement des photos dans l'album."+"\n"+
 "Modifier le placement des photos dans l'album peut être répété."+"\n";
 		assertEquals("cas écriture avec répétition du sujet", transfo.getTextMdT(), text);
+		
+		
+		
+		transfo2.ecritureMdT();
+		text= "Pour gérer ses photos numériques on ajoute une photo, on regarde un album, et en même temps on organise ses photos."+"\n"+
+		"Ajouter une photo, regarder un album et organiser ses photos peuvent être répété."+"\n"+
+		"Pour ajouter une photo l'utilisateur sélectionne une photo et le système place la photo dans les photos non triées."+"\n"+
+		"Pour regarder un album l'utilisateur sélectionne un album et l'utilisateur visualise l'album."+"\n"+
+		"Pour organiser ses photos on met une photos dans un album ou on range les photos d'un album."+"\n"+
+		"Pour mettre une photos dans un album l'utilisateur sélectionne une photo et on choisit l'album cible."+"\n"+
+		"Sélectionner une photo peut être répété."+"\n"+
+		"Pour ranger les photos d'un album l'utilisateur choisit un album et l'utilisateur modifie le placement des photos dans l'album."+"\n"+
+		"Modifier le placement des photos dans l'album peut être répété."+"\n";
+		//transfo2.ecritureMdT();
+		//System.out.println(transfo2.getTextMdT());
+		//System.out.println(transfo2.getNomFichierKMAD());
+		assertEquals("cas écriture avec iteration informelle", transfo2.getTextMdT(), text);
 	}
 
 	/**
