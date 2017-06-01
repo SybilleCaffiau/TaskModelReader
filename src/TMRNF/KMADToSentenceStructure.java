@@ -348,36 +348,65 @@ private void ecritureTache(List noeudFille, Element parent){
 			sujet="l'utilisateur sans le logiciel";
 		}
 		
-		String mot[]=nomTache.split(" ");
-		verbe=mot[0];
-		verbe=verbe.toLowerCase();
+		
 		complement="";
 		if(optionnel.compareTo("true")==0){
 			//tâche optionelle
 			complement+="optionnellement";
 			complement+=" ";
 		}
+		
+		
+		
+		String mot[]=nomTache.split(" ");
+		
+		System.out.println(mot[0]);
+		if((mot[0].compareTo("Se")!=0) && (mot[0].compareTo("se")!=0)){
+			
+			verbe=mot[0];
+			if(mot.length>1){
+				complement+=mot[1];
+				complement+=" ";
+				for(int k=2;k<mot.length;k++){
+					complement+=mot[k];
+					complement+=" ";
+				}
+			}
+			}
+		//cas des verbes réfléchis
+		else{
+			
+			verbe=mot[0]+" "+mot[1];
+			
+			if(mot.length>2){
+				complement+=mot[2];
+				complement+=" ";
+				for(int k=3;k<mot.length;k++){
+					complement+=mot[k];
+					complement+=" ";
+				}
+			}
+			
+		}
+		verbe=verbe.toLowerCase();
+		
+		
 		if(iter.compareTo("[1]")!=0){
 			//tâche iterative
 			nomTache=nomTache.toLowerCase();
 			verb_iter.add(nomTache);
 		}
-		if(mot.length>1){
-			complement+=mot[1];
-			complement+=" ";
-			for(int k=2;k<mot.length;k++){
-				complement+=mot[k];
-				complement+=" ";
-			}
-		}
+		
 		
 		SPhraseSpec ph1;
 		
-		if(mot.length>1){
+		if(complement.compareTo("")!=0){
 			//il y a un complement
+			
 			ph1=FairePhrase(sujet, verbe,complement);
 		}
 		else{
+			
 			ph1=FairePhrase(sujet, verbe);
 		}
 		
@@ -394,10 +423,28 @@ private void ecritureTache(List noeudFille, Element parent){
 		NLGFactory nlgFactory = new NLGFactory(frenchlexicon);
 		
 		SPhraseSpec phrase;
-		phrase=nlgFactory.createClause();
+		//phrase=nlgFactory.createClause();
+		//phrase.setSubject(sujet);
 		
-		phrase.setSubject(sujet);
-		phrase.setVerb(verbe);
+		
+		/////////////////////Traitement du verbe
+		String verbal[]=verbe.split(" ");
+		
+		if (verbal.length>1){
+			//cas de verbe réfléchi
+			phrase=nlgFactory.createClause(sujet, verbal[1], "se");
+			
+		}
+		else{
+			phrase=nlgFactory.createClause(sujet, verbe);
+		}
+		
+		
+
+
+		//System.out.println(verbe);
+		//phrase.setVerb(verbe);
+
 		
 		return phrase;
 	}
@@ -407,12 +454,28 @@ private void ecritureTache(List noeudFille, Element parent){
 		//Ressources utilisables par tout le programme
 		Lexicon frenchlexicon = new simplenlg.lexicon.french.XMLLexicon();
 		NLGFactory nlgFactory = new NLGFactory(frenchlexicon);
-		
 		SPhraseSpec phrase;
-		phrase=nlgFactory.createClause();
-		phrase.setSubject(sujet);
+		//phrase=nlgFactory.createClause();
+		//phrase.setSubject(sujet);
+		
+		
+		/////////////////////Traitement du verbe
+		String verbal[]=verbe.split(" ");
+		
+		if (verbal.length>1){
+			//cas de verbe réfléchi
+			phrase=nlgFactory.createClause(sujet, verbal[1], "se");
+			
+		}
+		else{
+			phrase=nlgFactory.createClause(sujet, verbe);
+		}
+		
+		
+
+
 		//System.out.println(verbe);
-		phrase.setVerb(verbe);
+		//phrase.setVerb(verbe);
 		phrase.setComplement(Comp);
 
 		
