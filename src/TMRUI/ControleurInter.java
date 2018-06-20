@@ -21,7 +21,7 @@ public interface ControleurInter {
 	/**
 	 * Methode qui ordonne la transformation du le contenu du fichier temporaire (xml) en texte en langage naturel (par le NF)
 	 */
-	public String ecrit();
+	public String ecritSansExemple();
 	
 	/**
 	 * Methode qui ordonne la transformation du le contenu du fichier temporaire (xml) en texte en langage naturel (par le NF) et le sauvegarde dans un fichier Sauvegarde.txt sous forme de document

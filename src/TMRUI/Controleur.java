@@ -64,12 +64,22 @@ public class Controleur implements ControleurInter {
 	}
 	
 	/**
-	 * Methode qui ordonne la transformation du contenu du fichier temporaire (xml) en texte en langage naturel (par le NF)
+	 * Methode qui ordonne la transformation du contenu du fichier temporaire (xml) en texte en langage naturel sans exemple (par le NF)
 	 */
-	public String ecrit(){
+	public String ecritSansExemple(){
 
 		NF = new KMADToSentenceStructure(nomFichierTemp.toString());
-		NF.ecritureMdT();
+		NF.ecritureMdT(false);
+		return(NF.getTextMdT());
+	}
+	
+	/**
+	 * Methode qui ordonne la transformation du contenu du fichier temporaire (xml) en texte en langage naturel avec des exemples (par le NF)
+	 */
+	public String ecritAvecExemple(){
+
+		NF = new KMADToSentenceStructure(nomFichierTemp.toString());
+		NF.ecritureMdT(true);
 		return(NF.getTextMdT());
 	}
 	
@@ -83,7 +93,8 @@ public class Controleur implements ControleurInter {
 	public void sauve(String fichier, String auteur, String act){
 		NF = new KMADToSentenceStructure(nomFichierTemp.toString());
 		
-		NF.ecritureMdT();
+		//par défaut je fais la sauvegarde sans exemple
+		NF.ecritureMdT(false);
 		
 		NF.produitDocument(fichier,auteur, act);
 	}

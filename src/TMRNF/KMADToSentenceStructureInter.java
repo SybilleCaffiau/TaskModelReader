@@ -29,9 +29,9 @@ public interface KMADToSentenceStructureInter {
 	public String getTextMdT();
 	
 	/**
-	 * Methode de traduction du xml vers du texte
+	 * Methode de traduction du xml vers du texte avec ou sans exemples (booléen)
 	 */
-	public void ecritureMdT(); 
+	public void ecritureMdT(boolean exemple); 
 	
 	/**
 	 * Méthode de génération d'un document contenant la version textuelle d'un modéle de tâches

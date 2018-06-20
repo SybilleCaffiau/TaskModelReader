@@ -194,17 +194,17 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 	/**
 	 * Methode de traduction du xml vers du texte
 	 */
-	public void ecritureMdT(){
+	public void ecritureMdT(boolean exemple){
 		//la racine du document 
 		Element root=docSource.getRootElement();		
 		List listeTaches = root.getChildren("task");
 		//la liste ne retourne qu'un suel objet : la tache racine
 		//System.out.println("il y a :"+listeTaches.size()+" filles pour "+root.getName());
-		ecritureTacheITer((Element)listeTaches.get(0));
+		ecritureTacheITer((Element)listeTaches.get(0),exemple);
 		
 	}
 	
-	private void ecritureTacheITer(Element mere){
+	private void ecritureTacheITer(Element mere, boolean exemple){
 		
 		//System.out.println("iteration sur les filles");
 		List listeTaches = mere.getChildren("task");
@@ -212,7 +212,7 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 		//System.out.println("il y a "+listeTaches.size()+" filles");
 		if(listeTaches.size()>0){
 			//si elle a des filles (tache décomposée), on l'affiche puis on lance l'algo sur les filles
-			ecritureTache(listeTaches,mere);
+			ecritureTache(listeTaches,mere, exemple);
 			
 			Iterator i = listeTaches.iterator();
 			while(i.hasNext()){
@@ -220,7 +220,7 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 				Element courant=(Element)i.next();
 				
 				//System.out.println("Dans ecriture MdT pour la tache "+courant.getChild("task-name").getText());
-				ecritureTacheITer(courant);
+				ecritureTacheITer(courant, exemple);
 				
 			}
 		}
@@ -233,7 +233,7 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 
 	
 	
-private void ecritureTache(List noeudFille, Element parent){
+private void ecritureTache(List noeudFille, Element parent, boolean exemple){
 		//System.out.println("J'écris les filles");
 		Realiser realiser = new Realiser();
 		Lexicon frenchlexicon = new simplenlg.lexicon.french.XMLLexicon();
@@ -391,6 +391,7 @@ private void ecritureTache(List noeudFille, Element parent){
 		
 		
 		
+		
 
 		if(tache_avec_valeur.size()>0){
 			//lier la tâche avec un objet pour laquelle on pourrait avec des valeurs
@@ -421,8 +422,8 @@ private void ecritureTache(List noeudFille, Element parent){
 				
 				
 			}	
-			
-			if(tache_avec_valeurOK.size()>0){
+			//pour tester comment faire avec et sans exemple
+			if((tache_avec_valeurOK.size()>0) && (exemple) ){
 				ecritureTache(noeudFille, parent, tache_avec_valeurOK);
 			}
 			
@@ -442,6 +443,7 @@ private void ecritureTache(List noeudFille, Element parent){
 		if(output2.length()>0){
 			//System.out.println(output2);
 			this.textMdt+=output2;
+			this.textMdt+="\n";
 			this.textMdt+="\n";
 		}
 		

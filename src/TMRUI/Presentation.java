@@ -43,7 +43,7 @@ public class Presentation extends JFrame {
 	
 	//Les composants du panel panelTexteSemantique
 	private JLabel labelTitreTexteSemantique;
-	private JButton bCreerTexteSemantique, bSauvegarderTexteSemantique;
+	private JButton bCreerTexteSemantique, bCreerTexteSemantiqueExemple, bSauvegarderTexteSemantique;
 	private JTextArea taTexteGenereTexteSemantique;
 	
 	//pour transmettre
@@ -122,6 +122,7 @@ public class Presentation extends JFrame {
 				taTexteGenereTexteSemantique.setText("");
 				bSauvegarderTexteSemantique.setEnabled(false);
 				bCreerTexteSemantique.setEnabled(false);
+				bCreerTexteSemantiqueExemple.setEnabled(false);
 				bCheminKxmlSemantique.setEnabled(true);
 				bCheminKxmlSemantique.setText("Rechercher sur ordinateur");
 				bSupprimerKxmlSemantique.setEnabled(false);
@@ -139,6 +140,7 @@ public class Presentation extends JFrame {
 					bCheminKxmlSemantique.setText("Changer le fichier");
 					labelCheminKxmlSemantique.setText(fenRechercheKxml.getSelectedFile().getAbsolutePath());
 					bCreerTexteSemantique.setEnabled(true);
+					bCreerTexteSemantiqueExemple.setEnabled(true);
 	
 					bSupprimerKxmlSemantique.setEnabled(true);
 				}
@@ -150,16 +152,30 @@ public class Presentation extends JFrame {
 		//Les composants du panel panelTexteSemantique
 		labelTitreTexteSemantique=new JLabel("Le modèle textuel :");
 		labelTitreTexteSemantique.setFont(new Font("Courier New", Font.BOLD, 14));
-		bCreerTexteSemantique= new JButton("Créer le texte"); 
+		bCreerTexteSemantique= new JButton("Créer le texte sans exemple"); 
+		bCreerTexteSemantiqueExemple= new JButton("Créer le texte avec exemple");
 		bCreerTexteSemantique.setEnabled(false);
+		bCreerTexteSemantiqueExemple.setEnabled(false);
 		bCreerTexteSemantique.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				
 				try{
 					monControleur.prepareFichier(labelCheminKxmlSemantique.getText());
-					taTexteGenereTexteSemantique.setText(monControleur.ecrit());
+					taTexteGenereTexteSemantique.setText(monControleur.ecritSansExemple());
 					bSauvegarderTexteSemantique.setEnabled(true);
 					bCreerTexteSemantique.setEnabled(false);
+				}
+				catch(IOException ie){}
+			}
+		});
+		bCreerTexteSemantiqueExemple.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				
+				try{
+					monControleur.prepareFichier(labelCheminKxmlSemantique.getText());
+					taTexteGenereTexteSemantique.setText(monControleur.ecritAvecExemple());
+					bSauvegarderTexteSemantique.setEnabled(true);
+					bCreerTexteSemantiqueExemple.setEnabled(false);
 				}
 				catch(IOException ie){}
 			}
@@ -220,6 +236,7 @@ public class Presentation extends JFrame {
 		panelTextHaut.setLayout(new FlowLayout(FlowLayout.LEFT));
 		panelTextHaut.add(labelTitreTexteSemantique);
 		panelTextHaut.add(bCreerTexteSemantique);
+		panelTextHaut.add(bCreerTexteSemantiqueExemple);
 		JPanel panelTextBas=new JPanel();
 		panelTextBas.add(bSauvegarderTexteSemantique);
 		
