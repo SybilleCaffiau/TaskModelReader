@@ -42,7 +42,7 @@ public class KMADToSentenceStructureMock implements KMADToSentenceStructureInter
 	 * @see TMRNF.KMADToSentenceStructureInter#ecritureMdT()
 	 */
 	@Override
-	public void ecritureMdT() {
+	public void ecritureMdT(boolean exemple) {
 		// TODO Auto-generated method stub
 
 	}

@@ -43,88 +43,25 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 	//private static Document docForme;
 	private String textMdt="";
 	
-	//structure temporaire pour simuler les connaissances en exemple
-	private Map<String, String> tache_objet = new HashMap<>();
-	private String operateur="le randonneur";
-	private String systeme="le GPS";
-	private String abs="le randonneur";
-	private String interact="l'utilisateur du GPS";
+	//structure temporaire pour lier les tâches et les objets
+	private Liens tache_objet = new Liens();
+	
+	//les sujets dans le cas où des valeurs ne sont pas attribué
+	private Executants exec = new Executants();
+	
+	
 	private Date dateRando;
 	
 	
-	public class Instance {
-		private String valeur;
-		private String objet;
-		private Date d;
-		
-		public Instance(String objet, String valeur, String d){
-			this.objet=objet;
-			this.valeur=valeur;
-			try{
-				this.d=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d);
-			} catch(ParseException e){
-				e.printStackTrace();
-			}
-			
-		}
-	}
 	
-	//liste des instances de l'ontologie
-	private List<Instance> seq_objet = new ArrayList();
+	
+	//liste des s de l'ontologie
+	private lesObjetsDuDomaine seq_objet = new lesObjetsDuDomaine();
 	
 	
 	public KMADToSentenceStructure(String nomFichier){
-		//date de la randonnée
-		try{
-		dateRando=new SimpleDateFormat("yyyy-MM-dd").parse("2017-01-22");
-		} catch(ParseException e){
-			e.printStackTrace();
-		}
-		
-		//à chaque tâche est associé un objet (un seul pour le moment). Tous les objets sont traduisibles en données GPS
-		
-		//a est le point de départ (en POI)
-		tache_objet.put("Aller au point de départ", "a");
-		
-		//b et c sont l'objectif visé
-		tache_objet.put("Descendre à l'objectif", "b");
-		tache_objet.put("Monter à l'objectif", "c");
-		
-		//d est l'objectif visé
-		tache_objet.put("Choisir l'objectif", "d");
-		
-		//e est ce qui est admiré
-		tache_objet.put("Admirer la vue", "e");
-		
-		//f est le lieu où on a mangé
-		tache_objet.put("Manger", "f");
-		
-		//g est le lieu où l'incident s'est produit
-		tache_objet.put("Subir un incident", "g");
-		
-		//h est le lieu de la rencontre
-		tache_objet.put("Rencontrer d'autres randonneurs", "h");
-		
-		//i est le lieu des conditions évaluées
-		tache_objet.put("Evaluer les conditions de randonnée", "i");
-		
-		//j est le point de départ 
-		tache_objet.put("Descendre au point de départ", "j");
-		
-		
-		//dans un premier temps, j'impose que le déterminant soit mis dans la valeur
-		//dans l'ordre séquentiel
-		//issu du traitement de François sur les données de Catherine (tous les activity event n'ayant pas de POI ont été supprimés
-		
-		seq_objet.add(new Instance("a","arrêt de bus de La coche", "2017-01-22 09:01:20"));
-		
-		seq_objet.add(new Instance("c","Grand Rocher", "2017-01-22 09:17:40"));
-		seq_objet.add(new Instance("e","Grand Rocher", "2017-01-22 12:05:43"));
-		seq_objet.add(new Instance("b","bergerie", "2017-01-22 12:18:07"));
-		seq_objet.add(new Instance("c","fontaine", "2017-01-22 09:40:12"));
-		seq_objet.add(new Instance("j","arrêt de bus de La coche", "2017-01-22 12:57:45"));
-		
-		
+		dateRando=seq_objet.getDateDonnees();
+				
 		fichierKMAD=nomFichier;
 		//parse le fichier kxml pour en obtenir la structure
 		SAXBuilder sxb = new SAXBuilder();
@@ -403,8 +340,8 @@ private void ecritureTache(List noeudFille, Element parent, boolean exemple){
 				//tache_objet.get(tache_avec_valeur.get(z).getChild("task-name").getText());
 				boolean t=false;
 				int seqO=0;
-				while(seqO<seq_objet.size() && !t){
-					if(tache_objet.get(tache_avec_valeur.get(z).getChild("task-name").getText())==seq_objet.get(seqO).objet){
+				while(seqO<seq_objet.getSize() && !t){
+					if(tache_objet.getObjet(tache_avec_valeur.get(z).getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet()){
 						//on a trouvé l'objet
 						t=true;
 					}
@@ -777,48 +714,11 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 	output=new String(char_table);
 	this.textMdt+=output;
 	this.textMdt+="\n";
-	/*String exemple="";
-	if(tache_avec_valeur.size()>0){
-		//lier la tâche avec un objet pour laquelle on pourrait avec des valeurs
-		
-		for (int z=0; z<tache_avec_valeur.size(); z++){
-		
-			//tache_objet.get(tache_avec_valeur.get(z).getChild("task-name").getText());
-			boolean t=false;
-			int seqO=0;
-			while(seqO<seq_objet.size() && !t){
-				if(tache_objet.get(tache_avec_valeur.get(z).getChild("task-name").getText())==seq_objet.get(seqO).objet){
-					//on a trouvé l'objet
-					t=true;
-				}
-				else{seqO+=1;}
-			}
-			if(t){
-				//this.textMdt+="Par exemple, ";
-				exemple+=seq_objet.get(seqO).objet;
-				exemple+=" = ";
-				exemple+= seq_objet.get(seqO).valeur;
-				//this.textMdt+=tache_objet.get(tache_avec_valeur.get(0).getChild("task-name").getText());
-				
-				
-			}
-			
-			
-		}	
-		
-	}*/
 	
 	
 	this.textMdt+="\n";
 	
-	//System.out.println(aggregated);
-	//this.textMdt+="Par exemple, ";
-	//String output2=realiser.realiseSentence(c1);
-	/*if(output2.length()>0){
-		//System.out.println(output2);
-		this.textMdt+=output2;
-		this.textMdt+="\n";
-	}*/
+	
 	
 }
 
@@ -983,10 +883,10 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
  */
 	
 	
-	
+	//sans exemple
 	private SPhraseSpec ecritureTacheElementaire(Element tache, List verb_iter){
 		Realiser realiser = new Realiser();
-		String sujet=operateur;//acteur de la tache : en fonction de l'executant
+		String sujet=exec.getUtilisateur();//acteur de la tache : en fonction de l'executant
 		String verbe;//on considére le premier mot du nom de la tâche comme étant le verbe
 		String complement;//le reste du nom de la tâche est un complement
 		String nomTache;//le nom complet de la tâche (tel que dans le MdT)
@@ -1012,17 +912,17 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 		
 		
 		if(typeTache.compareTo("INT")==0){
-			sujet=this.interact;
+			sujet=exec.getInteract();
 		}
 		
 		if(typeTache.compareTo("ABS")==0){
-			sujet=abs;
+			sujet=exec.getAbstrait();
 		}
 		if(typeTache.compareTo("SYS")==0){
-			sujet=systeme;
+			sujet=exec.getSysteme();
 		}
 		if(typeTache.compareTo("USER")==0){
-			sujet=operateur;
+			sujet=exec.getUtilisateur();
 		}
 		
 		
@@ -1101,7 +1001,7 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 		String optionnel;//caractére optionnel ou non
 		//String iter;//caractére iteratif 
 		
-		int exIter;//pour l'exemple d'iteration nombre d'instance de l'itération
+		int exIter;//pour l'exemple d'iteration nombre d' de l'itération
 		
 		nomTache=tache.getChild("task-name").getText();
 		
@@ -1203,10 +1103,10 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 				
 				if(!iter ){
 					exIter=1;
-				while(seqO<seq_objet.size() && !t){
+				while(seqO<seq_objet.getSize() && !t){
 					Element e = (Element)no_valeur.get(z);
 				
-					if(tache_objet.get(e.getChild("task-name").getText())==seq_objet.get(seqO).objet && nomTache==e.getChild("task-name").getText() ){
+					if(tache_objet.getObjet(e.getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet() && nomTache==e.getChild("task-name").getText() ){
 						//on a trouvé l'objet
 						//System.out.println("tache mere "+nomTache+" tache fille "+e.getChild("task-name").getText());
 						t=true;
@@ -1222,7 +1122,7 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 					
 					
 					
-					complement+= seq_objet.get(seqO).valeur;
+					complement+= seq_objet.getInstance(seqO).getValeur();
 					//this.textMdt+=tache_objet.get(tache_avec_valeur.get(0).getChild("task-name").getText());
 					
 					
@@ -1233,16 +1133,16 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 				else{
 					exIter=1;
 					
-					while(seqO<seq_objet.size() && !t){
+					while(seqO<seq_objet.getSize() && !t){
 						Element e = (Element)no_valeur.get(z);
 					
-						if(tache_objet.get(e.getChild("task-name").getText())==seq_objet.get(seqO).objet && nomTache==e.getChild("task-name").getText() ){
+						if(tache_objet.getObjet(e.getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet() && nomTache==e.getChild("task-name").getText() ){
 							//on a trouvé l'objet
 							//System.out.println("tache mere "+nomTache+" tache fille "+e.getChild("task-name").getText());
 							t=true;
 							
-							if(seqO+1<seq_objet.size()){
-								if(tache_objet.get(e.getChild("task-name").getText())==seq_objet.get(seqO+1).objet && nomTache==e.getChild("task-name").getText() ){
+							if(seqO+1<seq_objet.getSize()){
+								if(tache_objet.getObjet(e.getChild("task-name").getText())==seq_objet.getInstance(seqO+1).getObjet() && nomTache==e.getChild("task-name").getText() ){
 									System.out.println("2");
 									exIter=2;
 								}
@@ -1255,10 +1155,10 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 						//exemple+=seq_objet.get(seqO).objet;
 						//exemple+=" = ";
 						//complement+= "le ";
-						complement+= seq_objet.get(seqO).valeur;
+						complement+= seq_objet.getInstance(seqO).getValeur();
 						for (int numC=1; numC<exIter;numC++){
 							complement+= ", ";
-							complement+= seq_objet.get(seqO+numC).valeur;
+							complement+= seq_objet.getInstance(seqO+numC).getValeur();
 						}
 						
 						
@@ -1403,10 +1303,10 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 				//tache_objet.get(tache_avec_valeur.get(z).getChild("task-name").getText());
 				boolean t=false;
 				int seqO=0;
-				while(seqO<seq_objet.size() && !t){
+				while(seqO<seq_objet.getSize() && !t){
 					Element e = (Element)no_valeur.get(z);
 				
-					if(tache_objet.get(e.getChild("task-name").getText())==seq_objet.get(seqO).objet && nomTache==e.getChild("task-name").getText() ){
+					if(tache_objet.getObjet(e.getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet() && nomTache==e.getChild("task-name").getText() ){
 						//on a trouvé l'objet
 						//System.out.println("tache mere "+nomTache+" tache fille "+e.getChild("task-name").getText());
 						t=true;
@@ -1421,7 +1321,7 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 					
 					
 					
-					complement+= seq_objet.get(seqO).valeur;
+					complement+= seq_objet.getInstance(seqO).getValeur();
 					//this.textMdt+=tache_objet.get(tache_avec_valeur.get(0).getChild("task-name").getText());
 					
 					

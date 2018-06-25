@@ -16,7 +16,7 @@ public class ControleurMock implements ControleurInter {
 		
 	}
 	
-	public String ecrit(){
+	public String ecritSansExemple(){
 		return("");
 	}
 	
