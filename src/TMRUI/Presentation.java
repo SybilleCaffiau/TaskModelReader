@@ -173,7 +173,7 @@ public class Presentation extends JFrame {
 				
 				try{
 					monControleur.prepareFichier(labelCheminKxmlSemantique.getText());
-					taTexteGenereTexteSemantique.setText(monControleur.ecritAvecExemple());
+					taTexteGenereTexteSemantique.setText(monControleur.ecritAvecExemple("Nom du fichier Ontologie"));
 					bSauvegarderTexteSemantique.setEnabled(true);
 					bCreerTexteSemantiqueExemple.setEnabled(false);
 				}

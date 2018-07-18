@@ -43,14 +43,17 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 	//private static Document docForme;
 	private String textMdt="";
 	
+	
+	//ne servent que pour les exemples
 	//structure temporaire pour lier les tâches et les objets
-	private Liens tache_objet = new Liens();
+	private Liens tache_objet;
 	
 	//les sujets dans le cas où des valeurs ne sont pas attribué
-	private Executants exec = new Executants();
+	private Executants exec = new Executants("le randonneur", "le randonneur", "le randonneur", "le randonneur", "Catherine", "Catherine", "Catherine","Catherine" );
 	
 	
 	private Date dateRando;
+	
 	
 	
 	
@@ -76,27 +79,18 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 		
 		//initialisation de la racine
 		racine=docSource.getRootElement();
-		//enregistre();
-		//editXML();
 		
 	}
 	
-	//peut être supprimer
-	/*private Element getRacine(){
-		return racine;
-	}*/
-	
-	
-	//peut être supprimer
-	/*private void enregistre(){
-		try{
-			XMLOutputter sortie=new XMLOutputter(Format.getPrettyFormat());
-			sortie.output(docSource, new FileOutputStream("document.xml"));
+	public void lier(String nomFichierOntologie){
+		if(nomFichierOntologie=="null"){
+			
 		}
-		catch (java.io.IOException e){
-			System.out.println("probléme lors de l'enregistrement");
+		else{
+			//il faudra prendre en compte le fichier
+			tache_objet = new Liens();
 		}
-	}*/
+	}
 	
 	/**
 	 * Assesseur au nom du fichier xml traité (temporaire)
@@ -168,9 +162,8 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 	
 
 
-	
-	
-private void ecritureTache(List noeudFille, Element parent, boolean exemple){
+	//Retourne la phrase dans le cas où l'opérateur de décomposition est la séquence
+	private void ecritureTacheSeq(List noeudFille, Element parent, boolean exemple){
 		//System.out.println("J'écris les filles");
 		Realiser realiser = new Realiser();
 		Lexicon frenchlexicon = new simplenlg.lexicon.french.XMLLexicon();
@@ -179,35 +172,12 @@ private void ecritureTache(List noeudFille, Element parent, boolean exemple){
 		CoordinatedPhraseElement c=nlgFactory.createCoordinatedPhrase();
 		CoordinatedPhraseElement c1=nlgFactory.createCoordinatedPhrase();
 		//pour savoir si on est dans une phrase sequentielle
-		boolean seq=false;
+		boolean seq=true;
 		//SPhraseSpec proposition= nlgFactory.createClause();
-		
-		//Pour le traitement en fonction du type d'operateur
-		String op=parent.getChild("task-decomposition").getText();
-		if(op.compareTo("SEQ")==0){
-			seq=true;
-			//c.setFeature(Feature.CONJUNCTION, "ou");
+	
 			//System.out.println("Je suis dans le cas d'un ET");
 			c.setConjunction("et");
-		}
-		if(op.compareTo("PAR")==0){
-			//lien="et en même temps ";
-			seq=false;
-			//System.out.println("Je suis dans le cas d'un ET en même temps");
-			c.setFeature(Feature.CONJUNCTION, "et en même temps");
-		}
-		if(op.compareTo("ALT")==0){
-			seq=false;
-			//c.setFeature(Feature.CONJUNCTION, "ou");
-			//System.out.println("Je suis dans le cas d'un OU");
-			c.setConjunction("ou");
-		}
-		if(op.compareTo("ENT")==0){
-			seq=false;
-			//lien="et sans ordre ";
-			//System.out.println("Je suis dans le cas d'un ET sans ordre");
-			c.setFeature(Feature.CONJUNCTION, "et sans ordre");
-		}
+		
 		
 		//ici objectif groupe verbe infinitif
 		//c'est un syntagme prépositionnel
@@ -239,7 +209,7 @@ private void ecritureTache(List noeudFille, Element parent, boolean exemple){
 			//pour tous les enfants
 			//construction de la description des sous taches
 			
-			SPhraseSpec s=ecritureTacheElementaire(courant,verb_iter);
+			SPhraseSpec s=ecritureTacheElementaireSeq(courant,verb_iter,false);
 					//System.out.println(s);
 					//ajout à la phrase en conception
 			
@@ -328,42 +298,43 @@ private void ecritureTache(List noeudFille, Element parent, boolean exemple){
 		
 		
 		
-		
+		if(exemple){
 
-		if(tache_avec_valeur.size()>0){
+			if(tache_avec_valeur.size()>0){
 			//lier la tâche avec un objet pour laquelle on pourrait avec des valeurs
 			
-			List<Element> tache_avec_valeurOK=new ArrayList();
+				List<Element> tache_avec_valeurOK=new ArrayList();
 			
-			for (int z=0; z<tache_avec_valeur.size(); z++){
+				for (int z=0; z<tache_avec_valeur.size(); z++){
 			
 				//tache_objet.get(tache_avec_valeur.get(z).getChild("task-name").getText());
-				boolean t=false;
-				int seqO=0;
-				while(seqO<seq_objet.getSize() && !t){
-					if(tache_objet.getObjet(tache_avec_valeur.get(z).getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet()){
+					boolean t=false;
+					int seqO=0;
+					while(seqO<seq_objet.getSize() && !t){
+						if(tache_objet.getObjet(tache_avec_valeur.get(z).getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet()){
 						//on a trouvé l'objet
-						t=true;
+							t=true;
+						}
+						else{seqO+=1;}
 					}
-					else{seqO+=1;}
-				}
-				if(t){
+					if(t){
 					//this.textMdt+="Par exemple, ";
 					//exemple+=seq_objet.get(seqO).objet;
 					//exemple+=" = ";
 					//exemple+= seq_objet.get(seqO).valeur;
 					//this.textMdt+=tache_objet.get(tache_avec_valeur.get(0).getChild("task-name").getText());
-					tache_avec_valeurOK.add(tache_avec_valeur.get(z));
+						tache_avec_valeurOK.add(tache_avec_valeur.get(z));
 					
-				}
+					}
 				
 				
-			}	
+				}	
 			//pour tester comment faire avec et sans exemple
-			if((tache_avec_valeurOK.size()>0) && (exemple) ){
-				ecritureTache(noeudFille, parent, tache_avec_valeurOK);
-			}
+				if((tache_avec_valeurOK.size()>0) && (exemple) ){
+					ecritureTacheAvecExemple(noeudFille, parent, tache_avec_valeurOK);
+				}
 			
+			}
 		}
 		
 		/*if(exemple.length()>1){
@@ -386,35 +357,35 @@ private void ecritureTache(List noeudFille, Element parent, boolean exemple){
 		
 	}
 	
-//les tâches élémentaires pour lesquelles on a des valeurs pour l'exemple
-private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet){
-	//System.out.println("J'écris les filles");
-	Realiser realiser = new Realiser();
-	Lexicon frenchlexicon = new simplenlg.lexicon.french.XMLLexicon();
-	NLGFactory nlgFactory = new NLGFactory(frenchlexicon);
 	
-	CoordinatedPhraseElement c=nlgFactory.createCoordinatedPhrase();
-	CoordinatedPhraseElement c1=nlgFactory.createCoordinatedPhrase();
-	//pour savoir si on est dans une phrase sequentielle
-	boolean seq=false;
-	//SPhraseSpec proposition= nlgFactory.createClause();
 	
-	//Pour le traitement en fonction du type d'operateur
-	String op=parent.getChild("task-decomposition").getText();
-	
-	//dans le cas de l'exemple on va traiter un seul des cas (dans on supprimera le ou
-	if(op.compareTo("ALT")==0){
-			seq=false;
-			//c.setFeature(Feature.CONJUNCTION, "ou");
-			//System.out.println("Je suis dans le cas d'un OU");
-			//c.setConjunction("ou");
+	//Retourne la phrase dans le cas où l'opérateur de décomposition est l'alternatif
+		private void ecritureTacheAlt(List noeudFille, Element parent, boolean exemple){
+			//System.out.println("J'écris les filles");
+			Realiser realiser = new Realiser();
+			Lexicon frenchlexicon = new simplenlg.lexicon.french.XMLLexicon();
+			NLGFactory nlgFactory = new NLGFactory(frenchlexicon);
+			
+			CoordinatedPhraseElement c=nlgFactory.createCoordinatedPhrase();
+			CoordinatedPhraseElement c1=nlgFactory.createCoordinatedPhrase();
+			
+			//SPhraseSpec proposition= nlgFactory.createClause();
+		
+				//System.out.println("Je suis dans le cas d'un ET");
+				c.setConjunction("ou");
+			
+			
+			//ici le sujet de la phrase (le nom de la tâche décomposée)
+			//c'est un syntagme prépositionnel
 			String action=parent.getChild("task-name").getText();
 			action=action.toLowerCase();
 			
 			
-			PPPhraseSpec complementDuVerbe=nlgFactory.createPrepositionPhrase(action);
-			complementDuVerbe.addPreModifier("pour");
-			c.addPreModifier(complementDuVerbe);
+			SPhraseSpec obj =nlgFactory.createClause(action, "signifier");
+			
+			//PPPhraseSpec complementDuVerbe=nlgFactory.createPrepositionPhrase(action);
+			//complementDuVerbe.addPreModifier("pour");
+			//c.addPreModifier(complementDuVerbe);
 			
 			//on parcours toutes les taches
 			Iterator i = noeudFille.iterator();
@@ -424,37 +395,21 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 			NLGElement prop1;
 			//Liste des tâches elementaires (qui auront des valeurs dans l'exemple)
 			List<Element> tache_avec_valeur = new ArrayList();
-			
-			//booleen pour dire si la tache n'a pas déjà été illustrée
-			boolean illustre=false;
-			while(i.hasNext()  && !illustre){
+			while(i.hasNext()){
 				Element courant =(Element)i.next();
 				
 				//Ajout de la tâche à l'ensemble des tâches pour l'exemple (le cas échéant)
 				String type = courant.getChild("task-decomposition").getText();
-				SPhraseSpec s;
-				if(type.compareTo("LEAF")==0 && noeudElemObjet.contains((Element)courant)){
-					illustre=true;
-					//remplacer avec les valeurs
-						System.out.println("iteration de "+courant.getChild("task-name").getText()+" = "+courant.getChild("task-iteration").getText());
-						if(!courant.getChild("task-name").getText().equals("[1]")){
-							s=ecritureTacheElementaire(courant,true, noeudElemObjet);
-						}
-						else{s=ecritureTacheElementaire(courant,false, noeudElemObjet);}
-				
-					
-					//normalement on ne devrait pas avoir ce cas
-				/*else{
-					s=ecritureTacheElementaire(courant,verb_iter);
-							//System.out.println(s);
-							//ajout à la phrase en conception
-					
-				}*/
-					
-				
+				if(type.compareTo("LEAF")==0){
+					tache_avec_valeur.add(courant);
+				}
 				
 				//pour tous les enfants
 				//construction de la description des sous taches
+				
+				SPhraseSpec s=ecritureTacheElementaireSeq(courant,verb_iter,false);
+						//System.out.println(s);
+						//ajout à la phrase en conception
 				
 				
 				
@@ -462,14 +417,7 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 
 				//gestion d'évitement de la répétition des sujets
 				//if(seq & !s.getSubject().getFeature("head").toString().equals(on.getFeature("head").toString())){
-				
-			
-				
-				s.getVerb().setFeature(Feature.TENSE, Tense.PAST);
-				//elements.add(s);
-				c.addComplement(s);
-				
-				//System.out.println(s.getVerb().getFeature(Feature.TENSE).toString());
+					elements.add(s);
 					//System.out.println("dans le if");
 				//}
 				//else{
@@ -478,7 +426,7 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 				//}
 			}
 			
-			/*if((elements.size()>0) ) {
+			if((elements.size()>0) ) {
 				ClauseCoordinationRule clauseCoord = new ClauseCoordinationRule();
 				List<NLGElement> result = clauseCoord.apply(elements);
 				//System.out.println(result.size());
@@ -489,8 +437,208 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 					//l'aggregation a été possible
 					NLGElement aggregated = result.get(0);
 					
-						aggregated.setFeature(Feature.TENSE, Tense.PAST);
+					//c.addCoordinate(aggregated);
+					c.addComplement(aggregated);
+				}
+				else{
+					for(int k=0;  k<elements.size();k++){
+						NLGElement aggregated = elements.get(k);
+						c.addCoordinate(aggregated);
+						//c.addComplement(aggregated);
+						
+					}
 					
+				}
+				obj.addComplement(c);
+			}
+			
+			
+			
+			
+			if(verb_iter.size()>0){
+				//System.out.println("iteratif");
+				List<NLGElement> verb_iterEL= new ArrayList();
+				ClauseCoordinationRule clauseCoordIt = new ClauseCoordinationRule();
+				WordElement v=frenchlexicon.getWord(verb_iter.get(0), LexicalCategory.NOUN);
+				v.setFeature(LexicalFeature.GENDER, Gender.MASCULINE);
+				v.setFeature(LexicalFeature.PROPER,true);
+				prop1=nlgFactory.createClause(v,"pouvoir","être répété");
+				verb_iterEL.add(prop1);
+				//System.out.println(verb_iter.get(0));
+				for(int t=1; t<verb_iter.size();t++){
+					WordElement v1=frenchlexicon.getWord(verb_iter.get(t), LexicalCategory.NOUN);
+					v1.setFeature(LexicalFeature.GENDER, Gender.MASCULINE);
+					v1.setFeature(LexicalFeature.PROPER,true);
+					NLGElement prop2=nlgFactory.createClause(v1,"pouvoir","être répété");
+					verb_iterEL.add(prop2);
+					//System.out.println(verb_iterEL.size());
+				}
+				
+				List<NLGElement> resultIT = clauseCoordIt.apply(verb_iterEL);
+				//System.out.println(resultIT.size());
+			
+				if(verb_iterEL.size()>1){
+					NLGElement agIt=resultIT.get(0);
+					//System.out.println(agIt);
+					c1.addComplement(agIt);
+				}
+				else{
+					c1.addComplement(prop1);
+				}
+				
+			}
+		
+			
+			
+			String output = realiser.realiseSentence(obj);
+			//String output = realiser.realiseSentence(aggregated);
+			
+			
+			
+			
+			//System.out.println(output);
+			this.textMdt+=output;
+			this.textMdt+="\n";
+			
+			
+			
+			if(exemple){
+				//on est dans un mode pour l'affichage d'exemple
+				
+				if(tache_avec_valeur.size()>0){
+				//lier la tâche avec un objet pour laquelle on pourrait avec des valeurs
+				
+					List<Element> tache_avec_valeurOK=new ArrayList();
+				
+					for (int z=0; z<tache_avec_valeur.size(); z++){
+				
+					//tache_objet.get(tache_avec_valeur.get(z).getChild("task-name").getText());
+						boolean t=false;
+						int seqO=0;
+						while(seqO<seq_objet.getSize() && !t){
+							if(tache_objet.getObjet(tache_avec_valeur.get(z).getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet()){
+							//on a trouvé l'objet
+								t=true;
+							}
+							else{seqO+=1;}
+						}
+						if(t){
+						//this.textMdt+="Par exemple, ";
+						//exemple+=seq_objet.get(seqO).objet;
+						//exemple+=" = ";
+						//exemple+= seq_objet.get(seqO).valeur;
+						//this.textMdt+=tache_objet.get(tache_avec_valeur.get(0).getChild("task-name").getText());
+							tache_avec_valeurOK.add(tache_avec_valeur.get(z));
+						
+						}
+					
+					
+					}	
+				//pour tester comment faire avec et sans exemple
+					if((tache_avec_valeurOK.size()>0) && (exemple) ){
+						
+						ecritureTacheAvecExemple(noeudFille, parent, tache_avec_valeurOK);
+					}
+				
+				}
+			}
+			
+			/*if(exemple.length()>1){
+				this.textMdt+="Par exemple, ";
+				this.textMdt+=exemple;
+				exemple="";
+				this.textMdt+="\n";
+			}*/
+			
+			this.textMdt+="\n";
+			
+			//System.out.println(aggregated);
+			String output2=realiser.realiseSentence(c1);
+			if(output2.length()>0){
+				//System.out.println(output2);
+				this.textMdt+=output2;
+				this.textMdt+="\n";
+				this.textMdt+="\n";
+			}
+			
+		}
+		
+		
+		//Retourne la phrase dans le cas où l'opérateur de décomposition est le parallélisme
+		private void ecritureTachePar(List noeudFille, Element parent, boolean exemple){
+			//System.out.println("J'écris les filles");
+			Realiser realiser = new Realiser();
+			Lexicon frenchlexicon = new simplenlg.lexicon.french.XMLLexicon();
+			NLGFactory nlgFactory = new NLGFactory(frenchlexicon);
+			
+			CoordinatedPhraseElement c=nlgFactory.createCoordinatedPhrase();
+			CoordinatedPhraseElement c1=nlgFactory.createCoordinatedPhrase();
+				c.setConjunction("et");
+			
+			
+			
+			
+			//ici objectif groupe verbe infinitif
+			//c'est un syntagme prépositionnel
+			String action=parent.getChild("task-name").getText();
+			action=action.toLowerCase();
+			
+			
+			PPPhraseSpec complementDuVerbe=nlgFactory.createPrepositionPhrase(action);
+			complementDuVerbe.addPreModifier("pour");
+			complementDuVerbe.addPostModifier(", en même temps,");
+			c.addPreModifier(complementDuVerbe);
+	
+			
+			//on parcours toutes les taches
+			Iterator i = noeudFille.iterator();
+			//Liste des propositions pour une meme tache abstraite
+			List<NLGElement> elements= new ArrayList();
+			List<String> verb_iter= new ArrayList();//tableau des verbes iteratifs
+			NLGElement prop1;
+			//Liste des tâches elementaires (qui auront des valeurs dans l'exemple)
+			List<Element> tache_avec_valeur = new ArrayList();
+			while(i.hasNext()){
+				Element courant =(Element)i.next();
+				
+				//Ajout de la tâche à l'ensemble des tâches pour l'exemple (le cas échéant)
+				String type = courant.getChild("task-decomposition").getText();
+				if(type.compareTo("LEAF")==0){
+					tache_avec_valeur.add(courant);
+				}
+				
+				//pour tous les enfants
+				//construction de la description des sous taches
+				
+				SPhraseSpec s=ecritureTacheElementaireSeq(courant,verb_iter,false);
+						//System.out.println(s);
+						//ajout à la phrase en conception
+				
+				
+				
+				NPPhraseSpec on=nlgFactory.createNounPhrase("on");
+
+				//gestion d'évitement de la répétition des sujets
+				//if(seq & !s.getSubject().getFeature("head").toString().equals(on.getFeature("head").toString())){
+					elements.add(s);
+					//System.out.println("dans le if");
+				//}
+				//else{
+					//c.addCoordinate(s);	
+					//System.out.println("hors du if");
+				//}
+			}
+			
+			if((elements.size()>0) ) {
+				ClauseCoordinationRule clauseCoord = new ClauseCoordinationRule();
+				List<NLGElement> result = clauseCoord.apply(elements);
+				//System.out.println(result.size());
+				
+				if ((result.size()==1) && (!elements.get(0).equals(null))){
+					//System.out.println(result.size());
+					//System.out.println(result.get(0));
+					//l'aggregation a été possible
+					NLGElement aggregated = result.get(0);
 					
 					//c.addCoordinate(aggregated);
 					c.addComplement(aggregated);
@@ -498,7 +646,6 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 				else{
 					for(int k=0;  k<elements.size();k++){
 						NLGElement aggregated = elements.get(k);
-						aggregated.setFeature(Feature.TENSE, Tense.PAST);
 						c.addCoordinate(aggregated);
 						//c.addComplement(aggregated);
 					}
@@ -536,41 +683,366 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 					c1.addComplement(prop1);
 				}
 				
-			}*/
 			}
+		
+			
+			
+			String output = realiser.realiseSentence(c);
+			//String output = realiser.realiseSentence(aggregated);
+			
+			
+			
+			
+			//System.out.println(output);
+			this.textMdt+=output;
+			this.textMdt+="\n";
+			
+			
+			
+			if(exemple){
+
+				if(tache_avec_valeur.size()>0){
+				//lier la tâche avec un objet pour laquelle on pourrait avec des valeurs
+				
+					List<Element> tache_avec_valeurOK=new ArrayList();
+				
+					for (int z=0; z<tache_avec_valeur.size(); z++){
+				
+					//tache_objet.get(tache_avec_valeur.get(z).getChild("task-name").getText());
+						boolean t=false;
+						int seqO=0;
+						while(seqO<seq_objet.getSize() && !t){
+							if(tache_objet.getObjet(tache_avec_valeur.get(z).getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet()){
+							//on a trouvé l'objet
+								t=true;
+							}
+							else{seqO+=1;}
+						}
+						if(t){
+						//this.textMdt+="Par exemple, ";
+						//exemple+=seq_objet.get(seqO).objet;
+						//exemple+=" = ";
+						//exemple+= seq_objet.get(seqO).valeur;
+						//this.textMdt+=tache_objet.get(tache_avec_valeur.get(0).getChild("task-name").getText());
+							tache_avec_valeurOK.add(tache_avec_valeur.get(z));
+						
+						}
+					
+					
+					}	
+				//pour tester comment faire avec et sans exemple
+					if((tache_avec_valeurOK.size()>0) && (exemple) ){
+						ecritureTacheAvecExemple(noeudFille, parent, tache_avec_valeurOK);
+					}
+				
+				}
+			}
+			
+			/*if(exemple.length()>1){
+				this.textMdt+="Par exemple, ";
+				this.textMdt+=exemple;
+				exemple="";
+				this.textMdt+="\n";
+			}*/
+			
+			this.textMdt+="\n";
+			
+			//System.out.println(aggregated);
+			String output2=realiser.realiseSentence(c1);
+			if(output2.length()>0){
+				//System.out.println(output2);
+				this.textMdt+=output2;
+				this.textMdt+="\n";
+				this.textMdt+="\n";
+			}
+			
+		}
+		
+		
+		//Retourne la phrase dans le cas où l'opérateur de décomposition est la sans ordre
+		private void ecritureTacheSO(List noeudFille, Element parent, boolean exemple){
+			//System.out.println("J'écris les filles");
+			Realiser realiser = new Realiser();
+			Lexicon frenchlexicon = new simplenlg.lexicon.french.XMLLexicon();
+			NLGFactory nlgFactory = new NLGFactory(frenchlexicon);
+			
+			CoordinatedPhraseElement c=nlgFactory.createCoordinatedPhrase();
+			CoordinatedPhraseElement c1=nlgFactory.createCoordinatedPhrase();
+			//pour savoir si on est dans une phrase sequentielle
+			boolean seq=true;
+			//SPhraseSpec proposition= nlgFactory.createClause();
+		
+				//System.out.println("Je suis dans le cas d'un ET");
+				c.setConjunction("et");
+			
+			
+			//ici objectif groupe verbe infinitif
+			//c'est un syntagme prépositionnel
+			String action=parent.getChild("task-name").getText();
+			action=action.toLowerCase();
+			
+			
+			PPPhraseSpec complementDuVerbe=nlgFactory.createPrepositionPhrase(action);
+			complementDuVerbe.addPreModifier("pour");
+			complementDuVerbe.addPostModifier(", sans ordre,");
+			c.addPreModifier(complementDuVerbe);
+		
+			
+			//on parcours toutes les taches
+			Iterator i = noeudFille.iterator();
+			//Liste des propositions pour une meme tache abstraite
+			List<NLGElement> elements= new ArrayList();
+			List<String> verb_iter= new ArrayList();//tableau des verbes iteratifs
+			NLGElement prop1;
+			//Liste des tâches elementaires (qui auront des valeurs dans l'exemple)
+			List<Element> tache_avec_valeur = new ArrayList();
+			while(i.hasNext()){
+				Element courant =(Element)i.next();
+				
+				//Ajout de la tâche à l'ensemble des tâches pour l'exemple (le cas échéant)
+				String type = courant.getChild("task-decomposition").getText();
+				if(type.compareTo("LEAF")==0){
+					tache_avec_valeur.add(courant);
+				}
+				
+				//pour tous les enfants
+				//construction de la description des sous taches
+				
+				SPhraseSpec s=ecritureTacheElementaireSeq(courant,verb_iter,false);
+						//System.out.println(s);
+						//ajout à la phrase en conception
+				
+				
+				
+				NPPhraseSpec on=nlgFactory.createNounPhrase("on");
+
+				//gestion d'évitement de la répétition des sujets
+				//if(seq & !s.getSubject().getFeature("head").toString().equals(on.getFeature("head").toString())){
+					elements.add(s);
+					//System.out.println("dans le if");
+				//}
+				//else{
+					//c.addCoordinate(s);	
+					//System.out.println("hors du if");
+				//}
+			}
+			
+			if((elements.size()>0) ) {
+				ClauseCoordinationRule clauseCoord = new ClauseCoordinationRule();
+				List<NLGElement> result = clauseCoord.apply(elements);
+				//System.out.println(result.size());
+				
+				if ((result.size()==1) && (!elements.get(0).equals(null))){
+					//System.out.println(result.size());
+					//System.out.println(result.get(0));
+					//l'aggregation a été possible
+					NLGElement aggregated = result.get(0);
+					
+					//c.addCoordinate(aggregated);
+					c.addComplement(aggregated);
+				}
+				else{
+					for(int k=0;  k<elements.size();k++){
+						NLGElement aggregated = elements.get(k);
+						c.addCoordinate(aggregated);
+						//c.addComplement(aggregated);
+					}
+					
+				}
+			}
+			if(verb_iter.size()>0){
+				//System.out.println("iteratif");
+				List<NLGElement> verb_iterEL= new ArrayList();
+				ClauseCoordinationRule clauseCoordIt = new ClauseCoordinationRule();
+				WordElement v=frenchlexicon.getWord(verb_iter.get(0), LexicalCategory.NOUN);
+				v.setFeature(LexicalFeature.GENDER, Gender.MASCULINE);
+				v.setFeature(LexicalFeature.PROPER,true);
+				prop1=nlgFactory.createClause(v,"pouvoir","être répété");
+				verb_iterEL.add(prop1);
+				//System.out.println(verb_iter.get(0));
+				for(int t=1; t<verb_iter.size();t++){
+					WordElement v1=frenchlexicon.getWord(verb_iter.get(t), LexicalCategory.NOUN);
+					v1.setFeature(LexicalFeature.GENDER, Gender.MASCULINE);
+					v1.setFeature(LexicalFeature.PROPER,true);
+					NLGElement prop2=nlgFactory.createClause(v1,"pouvoir","être répété");
+					verb_iterEL.add(prop2);
+					//System.out.println(verb_iterEL.size());
+				}
+				
+				List<NLGElement> resultIT = clauseCoordIt.apply(verb_iterEL);
+				//System.out.println(resultIT.size());
+			
+				if(verb_iterEL.size()>1){
+					NLGElement agIt=resultIT.get(0);
+					//System.out.println(agIt);
+					c1.addComplement(agIt);
+				}
+				else{
+					c1.addComplement(prop1);
+				}
+				
+			}
+		
+			
+			
+			String output = realiser.realiseSentence(c);
+			//String output = realiser.realiseSentence(aggregated);
+			
+			
+			
+			
+			//System.out.println(output);
+			this.textMdt+=output;
+			this.textMdt+="\n";
+			
+			
+			
+			if(exemple){
+
+				if(tache_avec_valeur.size()>0){
+				//lier la tâche avec un objet pour laquelle on pourrait avec des valeurs
+				
+					List<Element> tache_avec_valeurOK=new ArrayList();
+				
+					for (int z=0; z<tache_avec_valeur.size(); z++){
+				
+					//tache_objet.get(tache_avec_valeur.get(z).getChild("task-name").getText());
+						boolean t=false;
+						int seqO=0;
+						while(seqO<seq_objet.getSize() && !t){
+							if(tache_objet.getObjet(tache_avec_valeur.get(z).getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet()){
+							//on a trouvé l'objet
+								t=true;
+							}
+							else{seqO+=1;}
+						}
+						if(t){
+						//this.textMdt+="Par exemple, ";
+						//exemple+=seq_objet.get(seqO).objet;
+						//exemple+=" = ";
+						//exemple+= seq_objet.get(seqO).valeur;
+						//this.textMdt+=tache_objet.get(tache_avec_valeur.get(0).getChild("task-name").getText());
+							tache_avec_valeurOK.add(tache_avec_valeur.get(z));
+						
+						}
+					
+					
+					}	
+				//pour tester comment faire avec et sans exemple
+					if((tache_avec_valeurOK.size()>0) && (exemple) ){
+						ecritureTacheAvecExemple(noeudFille, parent, tache_avec_valeurOK);
+					}
+				
+				}
+			}
+			
+			/*if(exemple.length()>1){
+				this.textMdt+="Par exemple, ";
+				this.textMdt+=exemple;
+				exemple="";
+				this.textMdt+="\n";
+			}*/
+			
+			this.textMdt+="\n";
+			
+			//System.out.println(aggregated);
+			String output2=realiser.realiseSentence(c1);
+			if(output2.length()>0){
+				//System.out.println(output2);
+				this.textMdt+=output2;
+				this.textMdt+="\n";
+				this.textMdt+="\n";
+			}
+			
+		}
+	
+	
+	
+	
+	private void ecritureTache(List noeudFille, Element parent, boolean exemple){
+		String op=parent.getChild("task-decomposition").getText();
+		if(op.compareTo("SEQ")==0){
+			ecritureTacheSeq(noeudFille, parent,  exemple);
+			//c.setFeature(Feature.CONJUNCTION, "ou");
+			//System.out.println("Je suis dans le cas d'un ET");
+		}
+		else if(op.compareTo("PAR")==0){
+			ecritureTachePar(noeudFille, parent,  exemple);
+			}
+			else if(op.compareTo("ALT")==0){ecritureTacheAlt(noeudFille, parent,  exemple);}
+			else{//if(op.compareTo("ENT")==0){
+			ecritureTacheSO(noeudFille, parent,  exemple);
+		}
+	
+	}
+	
+
+	
+//les tâches élémentaires pour lesquelles on a des valeurs pour l'exemple
+private void ecritureTacheAvecExemple(List noeudFille, Element parent, List noeudElemObjet){
+	//System.out.println("J'écris les filles");
+	Realiser realiser = new Realiser();
+	Lexicon frenchlexicon = new simplenlg.lexicon.french.XMLLexicon();
+	NLGFactory nlgFactory = new NLGFactory(frenchlexicon);
+	
+	CoordinatedPhraseElement c=nlgFactory.createCoordinatedPhrase();
+	CoordinatedPhraseElement c1=nlgFactory.createCoordinatedPhrase();
+	//pour savoir si on est dans une phrase sequentielle
+	boolean seq=false;
+	boolean alt=false;
+	boolean trouveAlt=false;
+	//SPhraseSpec proposition= nlgFactory.createClause();
+	
+	//Pour le traitement en fonction du type d'operateur
+	String op=parent.getChild("task-decomposition").getText();
+	String action=parent.getChild("task-name").getText();
+	action=action.toLowerCase();
+	
+	
+	//dans le cas de l'exemple on va traiter un seul des cas (dans on supprimera le ou)
+	if(op.compareTo("ALT")==0){
+			seq=false;
+			alt=true;
+			//PPPhraseSpec complementDuVerbe=nlgFactory.createPrepositionPhrase(action);
+			//complementDuVerbe.addPreModifier("pour");
+			//c.addPreModifier(complementDuVerbe);
+			
 			
 	}
 	
 	else{
-	if(op.compareTo("SEQ")==0){
-		seq=true;
-		//c.setFeature(Feature.CONJUNCTION, "ou");
-		//System.out.println("Je suis dans le cas d'un ET");
+		
 		c.setConjunction("et");
-	}
-	if(op.compareTo("PAR")==0){
-		//lien="et en même temps ";
-		seq=false;
-		//System.out.println("Je suis dans le cas d'un ET en même temps");
-		c.setFeature(Feature.CONJUNCTION, "et en même temps");
-	}
-	
-	if(op.compareTo("ENT")==0){
-		seq=false;
-		//lien="et sans ordre ";
-		//System.out.println("Je suis dans le cas d'un ET sans ordre");
-		c.setFeature(Feature.CONJUNCTION, "et sans ordre");
-	}
-	
-	//ici objectif groupe verbe infinitif
-	//c'est un syntagme prépositionnel
-		String action=parent.getChild("task-name").getText();
-		action=action.toLowerCase();
 		
+		if(op.compareTo("SEQ")==0){
+			seq=true;
+			alt=false;
+			PPPhraseSpec complementDuVerbe=nlgFactory.createPrepositionPhrase(action);
+			complementDuVerbe.addPreModifier("pour");
+			c.addPreModifier(complementDuVerbe);
+			
+		}
+		if(op.compareTo("PAR")==0){
 		
-		PPPhraseSpec complementDuVerbe=nlgFactory.createPrepositionPhrase(action);
-		complementDuVerbe.addPreModifier("pour");
-		c.addPreModifier(complementDuVerbe);
+			seq=false;
+			alt=false;
+			PPPhraseSpec complementDuVerbe=nlgFactory.createPrepositionPhrase(action);
+			complementDuVerbe.addPreModifier("pour");
+			complementDuVerbe.addPostModifier(", en même temps,");
+			c.addPreModifier(complementDuVerbe);
+	
+		}
+	
+		if(op.compareTo("ENT")==0){
+			seq=false;
+			alt=false;
+			PPPhraseSpec complementDuVerbe=nlgFactory.createPrepositionPhrase(action);
+			complementDuVerbe.addPreModifier("pour");
+			complementDuVerbe.addPostModifier(", sans ordre,");
+			c.addPreModifier(complementDuVerbe);
+		}
+		
+	}
 		
 		//on parcours toutes les taches
 		Iterator i = noeudFille.iterator();
@@ -578,34 +1050,52 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 		List<NLGElement> elements= new ArrayList();
 		List<String> verb_iter= new ArrayList();//tableau des verbes iteratifs
 		NLGElement prop1;
-		//Liste des tâches elementaires (qui auront des valeurs dans l'exemple)
-		List<Element> tache_avec_valeur = new ArrayList();
-		while(i.hasNext()){
+		SPhraseSpec s=null;
+		
+		//pour toutes les filles
+		while(i.hasNext() ){
 			Element courant =(Element)i.next();
-			
 			//Ajout de la tâche à l'ensemble des tâches pour l'exemple (le cas échéant)
 			String type = courant.getChild("task-decomposition").getText();
-			SPhraseSpec s;
+			
+			//si c'est une feuille
 			if(type.compareTo("LEAF")==0){
 				//remplacer avec les valeurs
 				if(noeudElemObjet.contains((Element)courant)){
-					System.out.println("iteration de "+courant.getChild("task-name").getText()+" = "+courant.getChild("task-iteration").getText());
+					
 					if(!courant.getChild("task-name").getText().equals("[1]")){
 						s=ecritureTacheElementaire(courant,true, noeudElemObjet);
+						elements.add(s);
+						if(alt){
+							trouveAlt=true;
+						}
 					}
-					else{s=ecritureTacheElementaire(courant,false, noeudElemObjet);}
+					else{
+						s=ecritureTacheElementaire(courant,false, noeudElemObjet);
+					elements.add(s);
+						if(alt){
+							trouveAlt=true;
+						}
+					}
 				}
 				else{
-					s=ecritureTacheElementaire(courant,verb_iter);
+					if(!alt){
+					s=ecritureTacheElementaireSeq(courant,verb_iter,true);
+					s.setSubject(exec.getUtilisateurEx());
+					elements.add(s);
+					}
 						//System.out.println(s);
 						//ajout à la phrase en conception
 				
 				}
 				
-				//tache_avec_valeur.add(courant);
+				
 			}
+			//sinon on lance l'ecriture sur elle
 			else{
 				s=ecritureTacheElementaire(courant,verb_iter);
+				s.setSubject(exec.getUtilisateurEx());
+				elements.add(s);
 					//System.out.println(s);
 					//ajout à la phrase en conception
 			
@@ -618,50 +1108,50 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 			
 			NPPhraseSpec on=nlgFactory.createNounPhrase("on");
 	
-			//gestion d'évitement de la répétition des sujets
-			//if(seq & !s.getSubject().getFeature("head").toString().equals(on.getFeature("head").toString())){
 			
-		
-			
-			s.getVerb().setFeature(Feature.TENSE, Tense.PAST);
-			elements.add(s);
-			
-			//System.out.println(s.getVerb().getFeature(Feature.TENSE).toString());
-				//System.out.println("dans le if");
-			//}
-			//else{
-				//c.addCoordinate(s);	
-				//System.out.println("hors du if");
-			//}
 		}
 		
+
 		if((elements.size()>0) ) {
-			ClauseCoordinationRule clauseCoord = new ClauseCoordinationRule();
-			List<NLGElement> result = clauseCoord.apply(elements);
-			//System.out.println(result.size());
+			if(!alt){
 			
-			if ((result.size()==1) && (!elements.get(0).equals(null))){
+				ClauseCoordinationRule clauseCoord = new ClauseCoordinationRule();
+				List<NLGElement> result = clauseCoord.apply(elements);
 				//System.out.println(result.size());
-				//System.out.println(result.get(0));
-				//l'aggregation a été possible
-				NLGElement aggregated = result.get(0);
 				
-					aggregated.setFeature(Feature.TENSE, Tense.PAST);
+			
+				if ((result.size()==1) && (!elements.get(0).equals(null))){
+					//System.out.println(result.size());
+					//System.out.println(result.get(0));
+					//l'aggregation a été possible
+					NLGElement aggregated = result.get(0);
+				
+					//aggregated.setFeature(Feature.TENSE, Tense.PAST);
 				
 				
-				//c.addCoordinate(aggregated);
-				c.addComplement(aggregated);
+					//c.addCoordinate(aggregated);
+					c.addComplement(aggregated);
+				}
+				else{
+					for(int k=0;  k<elements.size();k++){
+						NLGElement aggregated = elements.get(k);
+						//aggregated.setFeature(Feature.TENSE, Tense.PAST);
+						
+						c.addCoordinate(aggregated);
+						//c.addComplement(aggregated);
+					}
+				
+				}
 			}
 			else{
 				for(int k=0;  k<elements.size();k++){
-					NLGElement aggregated = elements.get(k);
-					aggregated.setFeature(Feature.TENSE, Tense.PAST);
-					c.addCoordinate(aggregated);
-					//c.addComplement(aggregated);
+					System.out.println(elements.get(k));
+					
 				}
-				
+				c.addCoordinate((NLGElement)elements.get(0));
 			}
 		}
+		
 		if(verb_iter.size()>0){
 			//System.out.println("iteratif");
 			List<NLGElement> verb_iterEL= new ArrayList();
@@ -696,7 +1186,8 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 		}
 
 	
-	}
+	
+	c.setFeature(Feature.TENSE, Tense.PAST);
 	String output = realiser.realiseSentence(c);
 	//String output = realiser.realiseSentence(aggregated);
 	
@@ -708,9 +1199,11 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 	SimpleDateFormat formater = new SimpleDateFormat("'le' dd MMMM yyyy ");
 	this.textMdt+=formater.format(dateRando);
 	
-	//mettre premiere lettre de l'output en minuscule
 	char[] char_table=output.toCharArray();
-	char_table[0]=Character.toLowerCase(char_table[0]);
+	//mettre premiere lettre de l'output en minuscule
+	if(!alt){
+		char_table[0]=Character.toLowerCase(char_table[0]);
+	}
 	output=new String(char_table);
 	this.textMdt+=output;
 	this.textMdt+="\n";
@@ -723,164 +1216,123 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 }
 
 
-
-
-/* Sauvegarde ecritureTache (sans exemple) version IHM2017
- * private void ecritureTache(List noeudFille, Element parent){
-		//System.out.println("J'écris les filles");
+	//ex à true signifie que la phrase sera intégrée à une exemplification
+	private SPhraseSpec ecritureTacheElementaireSeq(Element tache, List verb_iter, Boolean ex){
 		Realiser realiser = new Realiser();
-		Lexicon frenchlexicon = new simplenlg.lexicon.french.XMLLexicon();
-		NLGFactory nlgFactory = new NLGFactory(frenchlexicon);
+		String sujet=exec.getUtilisateur();//acteur de la tache : en fonction de l'executant
+		String verbe;//on considére le premier mot du nom de la tâche comme étant le verbe
+		String complement;//le reste du nom de la tâche est un complement
+		String nomTache;//le nom complet de la tâche (tel que dans le MdT)
+		String typeTache;//l'executant
+		String optionnel;//caractére optionnel ou non
+		String iter;//caractére iteratif 
 		
-		CoordinatedPhraseElement c=nlgFactory.createCoordinatedPhrase();
-		CoordinatedPhraseElement c1=nlgFactory.createCoordinatedPhrase();
-		//pour savoir si on est dans une phrase sequentielle
-		boolean seq=false;
-		//SPhraseSpec proposition= nlgFactory.createClause();
 		
-		//Pour le traitement en fonction du type d'operateur
-		String op=parent.getChild("task-decomposition").getText();
-		if(op.compareTo("SEQ")==0){
-			seq=true;
-			//c.setFeature(Feature.CONJUNCTION, "ou");
-			//System.out.println("Je suis dans le cas d'un ET");
-			c.setConjunction("et");
+nomTache=tache.getChild("task-name").getText();
+		
+		typeTache=tache.getChild("task-executant").getText();
+		
+		optionnel=tache.getChild("task-optional").getText();
+		try{
+			//System.out.println(tache.getChild("task-descriptioniteration").getText());
+			iter=tache.getChild("task-descriptioniteration").getText();
 		}
-		if(op.compareTo("PAR")==0){
-			//lien="et en même temps ";
-			seq=false;
-			//System.out.println("Je suis dans le cas d'un ET en même temps");
-			c.setFeature(Feature.CONJUNCTION, "et en même temps");
-		}
-		if(op.compareTo("ALT")==0){
-			seq=false;
-			//c.setFeature(Feature.CONJUNCTION, "ou");
-			//System.out.println("Je suis dans le cas d'un OU");
-			c.setConjunction("ou");
-		}
-		if(op.compareTo("ENT")==0){
-			seq=false;
-			//lien="et sans ordre ";
-			//System.out.println("Je suis dans le cas d'un ET sans ordre");
-			c.setFeature(Feature.CONJUNCTION, "et sans ordre");
+		catch(Exception e){
+			iter=tache.getChild("task-iteration").getText();
 		}
 		
-		//ici objectif groupe verbe infinitif
-		//c'est un syntagme prépositionnel
-		String action=parent.getChild("task-name").getText();
-		action=action.toLowerCase();
 		
+		if(!ex){
+			System.out.println("Cas général");
+			if(typeTache.compareTo("INT")==0){sujet=exec.getInteract();}
 		
-		PPPhraseSpec complementDuVerbe=nlgFactory.createPrepositionPhrase(action);
-		complementDuVerbe.addPreModifier("pour");
-		c.addPreModifier(complementDuVerbe);
-		
-		//on parcours toutes les taches
-		Iterator i = noeudFille.iterator();
-		//Liste des propositions pour une meme tache abstraite
-		List<NLGElement> elements= new ArrayList();
-		List<String> verb_iter= new ArrayList();//tableau des verbes iteratifs
-		NLGElement prop1;
-		while(i.hasNext()){
-			Element courant =(Element)i.next();
-			
-			//pour tous les enfants
-			//construction de la description des sous taches
-			
-			SPhraseSpec s=ecritureTacheElementaire(courant,verb_iter);
-					//System.out.println(s);
-					//ajout à la phrase en conception
-			
-			
-			
-			NPPhraseSpec on=nlgFactory.createNounPhrase("on");
-
-			//gestion d'évitement de la répétition des sujets
-			//if(seq & !s.getSubject().getFeature("head").toString().equals(on.getFeature("head").toString())){
-				elements.add(s);
-				//System.out.println("dans le if");
-			//}
-			//else{
-				//c.addCoordinate(s);	
-				//System.out.println("hors du if");
-			//}
+			if(typeTache.compareTo("ABS")==0){sujet=exec.getAbstrait();}
+			if(typeTache.compareTo("SYS")==0){sujet=exec.getSysteme();}
+			if(typeTache.compareTo("USER")==0){sujet=exec.getUtilisateur();}
 		}
-		
-		if((elements.size()>0) ) {
-			ClauseCoordinationRule clauseCoord = new ClauseCoordinationRule();
-			List<NLGElement> result = clauseCoord.apply(elements);
-			//System.out.println(result.size());
-			
-			if ((result.size()==1) && (!elements.get(0).equals(null))){
-				//System.out.println(result.size());
-				//System.out.println(result.get(0));
-				//l'aggregation a été possible
-				NLGElement aggregated = result.get(0);
-				
-				//c.addCoordinate(aggregated);
-				c.addComplement(aggregated);
+		else{
+			System.out.println("Cas de l'exemple");
+			if(typeTache.compareTo("INT")==0){
+				sujet=exec.getInteractEx();
 			}
-			else{
-				for(int k=0;  k<elements.size();k++){
-					NLGElement aggregated = elements.get(k);
-					c.addCoordinate(aggregated);
-					//c.addComplement(aggregated);
+			
+			if(typeTache.compareTo("ABS")==0){
+				sujet=exec.getAbstraitEx();
+			}
+			if(typeTache.compareTo("SYS")==0){
+				sujet=exec.getSystemeEx();
+			}
+			if(typeTache.compareTo("USER")==0){
+				sujet=exec.getUtilisateurEx();
+			}
+		}
+		
+		
+		complement="";
+		if(optionnel.compareTo("true")==0){
+			//tâche optionelle
+			complement+="éventuellement";
+			complement+=" ";
+		}
+		
+		
+		
+		String mot[]=nomTache.split(" ");
+		
+		//System.out.println(mot[0]);
+		if((mot[0].compareTo("Se")!=0) && (mot[0].compareTo("se")!=0)){
+			
+			verbe=mot[0];
+			if(mot.length>1){
+				complement+=mot[1];
+				complement+=" ";
+				for(int k=2;k<mot.length;k++){
+					complement+=mot[k];
+					complement+=" ";
 				}
-				
 			}
-		}
-		if(verb_iter.size()>0){
-			//System.out.println("iteratif");
-			List<NLGElement> verb_iterEL= new ArrayList();
-			ClauseCoordinationRule clauseCoordIt = new ClauseCoordinationRule();
-			WordElement v=frenchlexicon.getWord(verb_iter.get(0), LexicalCategory.NOUN);
-			v.setFeature(LexicalFeature.GENDER, Gender.MASCULINE);
-			v.setFeature(LexicalFeature.PROPER,true);
-			prop1=nlgFactory.createClause(v,"pouvoir","être répété");
-			verb_iterEL.add(prop1);
-			//System.out.println(verb_iter.get(0));
-			for(int t=1; t<verb_iter.size();t++){
-				WordElement v1=frenchlexicon.getWord(verb_iter.get(t), LexicalCategory.NOUN);
-				v1.setFeature(LexicalFeature.GENDER, Gender.MASCULINE);
-				v1.setFeature(LexicalFeature.PROPER,true);
-				NLGElement prop2=nlgFactory.createClause(v1,"pouvoir","être répété");
-				verb_iterEL.add(prop2);
-				//System.out.println(verb_iterEL.size());
+			}
+		//cas des verbes réfléchis
+		else{
+			
+			verbe=mot[0]+" "+mot[1];
+			
+			if(mot.length>2){
+				complement+=mot[2];
+				complement+=" ";
+				for(int k=3;k<mot.length;k++){
+					complement+=mot[k];
+					complement+=" ";
+				}
 			}
 			
-			List<NLGElement> resultIT = clauseCoordIt.apply(verb_iterEL);
-			//System.out.println(resultIT.size());
+		}
+		verbe=verbe.toLowerCase();
 		
-			if(verb_iterEL.size()>1){
-				NLGElement agIt=resultIT.get(0);
-				//System.out.println(agIt);
-				c1.addComplement(agIt);
-			}
-			else{
-				c1.addComplement(prop1);
-			}
-			
+		
+		if(iter.compareTo("[1]")!=0){
+			//tâche iterative
+			nomTache=nomTache.toLowerCase();
+			verb_iter.add(nomTache);
 		}
+		
+		
+		SPhraseSpec ph1;
+		
+		if(complement.compareTo("")!=0){
+			//il y a un complement
+			
+			ph1=FairePhrase(sujet, verbe,complement,false);
+		}
+		else{
+			
+			ph1=FairePhrase(sujet, verbe);
+		}
+		
+		return ph1;
+	}
+		
 	
-		
-		
-		String output = realiser.realiseSentence(c);
-		//String output = realiser.realiseSentence(aggregated);
-				
-		//System.out.println(output);
-		this.textMdt+=output;
-		this.textMdt+="\n";
-		
-		//System.out.println(aggregated);
-		String output2=realiser.realiseSentence(c1);
-		if(output2.length()>0){
-			//System.out.println(output2);
-			this.textMdt+=output2;
-			this.textMdt+="\n";
-		}
-		
-	}	
- */
 	
 	
 	//sans exemple
@@ -912,17 +1364,17 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 		
 		
 		if(typeTache.compareTo("INT")==0){
-			sujet=exec.getInteract();
+			sujet=exec.getAbstraitEx();
 		}
 		
 		if(typeTache.compareTo("ABS")==0){
-			sujet=exec.getAbstrait();
+			sujet=exec.getAbstraitEx();
 		}
 		if(typeTache.compareTo("SYS")==0){
-			sujet=exec.getSysteme();
+			sujet=exec.getSystemeEx();
 		}
 		if(typeTache.compareTo("USER")==0){
-			sujet=exec.getUtilisateur();
+			sujet=exec.getUtilisateurEx();
 		}
 		
 		
@@ -990,7 +1442,7 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 		return ph1;
 	}
 	
-	
+	//avec exemple
 	private SPhraseSpec ecritureTacheElementaire(Element tache, boolean iter, List no_valeur){
 		Realiser realiser = new Realiser();
 		String sujet="l'utilisateur";//acteur de la tache : en fonction de l'executant
@@ -1008,37 +1460,10 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 		typeTache=tache.getChild("task-executant").getText();
 		
 		optionnel=tache.getChild("task-optional").getText();
-		/*try{
-			//System.out.println(tache.getChild("task-descriptioniteration").getText());
-			iter=tache.getChild("task-descriptioniteration").getText();
-		}
-		catch(Exception e){
-			iter=tache.getChild("task-iteration").getText();
-		}*/
 		
-		
-		
-		if(typeTache.compareTo("INT")==0){
-			sujet="Catherine avec le GPS";
-		}
-		
-		if(typeTache.compareTo("ABS")==0){
-			sujet="Catherine";
-		}
-		if(typeTache.compareTo("SYS")==0){
-			sujet="le GPS";
-		}
-		if(typeTache.compareTo("USER")==0){
-			sujet="Catherine";
-		}
 		
 		
 		complement="";
-		/*if(optionnel.compareTo("true")==0){
-			//tâche optionelle
-			complement+="optionnellement";
-			complement+=" ";
-		}*/
 		
 		
 		
@@ -1048,17 +1473,15 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 		if((mot[0].compareTo("Se")!=0) && (mot[0].compareTo("se")!=0)){
 			
 			verbe=mot[0];
-			/*if(mot.length>1){
-				complement+=mot[1];
-				complement+=" ";
-				for(int k=2;k<mot.length;k++){
-					complement+=mot[k];
-					complement+=" ";
-				}
-			}*/
+			
 			if ((mot[1].compareTo("à")==0) || (mot[1].compareTo("au")==0)){
 				//c'est un verbe suivi d'une préposition pour complement de lieu
 				verbe+=" à";
+			}
+			
+			if (mot[1].compareTo("vers")==0) {
+				//c'est un verbe suivi d'une préposition pour complement de lieu
+				verbe+=" vers";
 			}
 			}
 		//cas des verbes réfléchis
@@ -1071,14 +1494,10 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 				verbe+=" à";
 			}
 			
-			/*if(mot.length>2){
-				complement+=mot[2];
-				complement+=" ";
-				for(int k=3;k<mot.length;k++){
-					complement+=mot[k];
-					complement+=" ";
-				}
-			}*/
+			if (mot[1].compareTo("vers")==0) {
+				//c'est un verbe suivi d'une préposition pour complement de lieu
+				verbe+=" vers";
+			}
 			
 		}
 		
@@ -1102,38 +1521,33 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 				
 				
 				if(!iter ){
+					
 					exIter=1;
-				while(seqO<seq_objet.getSize() && !t){
-					Element e = (Element)no_valeur.get(z);
+					while(seqO<seq_objet.getSize() && !t){
+					
+						Element e = (Element)no_valeur.get(z);
 				
-					if(tache_objet.getObjet(e.getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet() && nomTache==e.getChild("task-name").getText() ){
+						if(tache_objet.getObjet(e.getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet() && nomTache==e.getChild("task-name").getText() ){
 						//on a trouvé l'objet
 						//System.out.println("tache mere "+nomTache+" tache fille "+e.getChild("task-name").getText());
-						t=true;
+						
+							t=true;
+						}
+						else{seqO+=1;}
 					}
-					else{seqO+=1;}
-				}
-				if(t){
-					//this.textMdt+="Par exemple, ";
-					//exemple+=seq_objet.get(seqO).objet;
-					//exemple+=" = ";
-					//complement+= "le ";
-					
-					
-					
-					
+					if(t){
 					complement+= seq_objet.getInstance(seqO).getValeur();
 					//this.textMdt+=tache_objet.get(tache_avec_valeur.get(0).getChild("task-name").getText());
-					
-					
-					
-				}
+					sujet=seq_objet.getInstance(seqO).getProtagoniste();
+					}
 				}
 				
 				else{
+					//iteratif
 					exIter=1;
 					
 					while(seqO<seq_objet.getSize() && !t){
+						
 						Element e = (Element)no_valeur.get(z);
 					
 						if(tache_objet.getObjet(e.getChild("task-name").getText())==seq_objet.getInstance(seqO).getObjet() && nomTache==e.getChild("task-name").getText() ){
@@ -1142,23 +1556,25 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 							t=true;
 							
 							if(seqO+1<seq_objet.getSize()){
+								
 								if(tache_objet.getObjet(e.getChild("task-name").getText())==seq_objet.getInstance(seqO+1).getObjet() && nomTache==e.getChild("task-name").getText() ){
-									System.out.println("2");
+									
 									exIter=2;
 								}
+								
 							}
+							
 						}
 						else{seqO+=1;}
 					}
 					if(t){
-						//this.textMdt+="Par exemple, ";
-						//exemple+=seq_objet.get(seqO).objet;
-						//exemple+=" = ";
-						//complement+= "le ";
 						complement+= seq_objet.getInstance(seqO).getValeur();
+						sujet=seq_objet.getInstance(seqO).getProtagoniste();
+						System.out.println(complement);
 						for (int numC=1; numC<exIter;numC++){
-							complement+= ", ";
+							complement+= " et ";
 							complement+= seq_objet.getInstance(seqO+numC).getValeur();
+							sujet=seq_objet.getInstance(seqO).getProtagoniste();
 						}
 						
 						
@@ -1174,26 +1590,11 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 		
 		
 		verbe=verbe.toLowerCase();
-		
-		
-		/*if(iter.compareTo("[1]")!=0){
-			//tâche iterative
-			nomTache=nomTache.toLowerCase();
-			verb_iter.add(nomTache);
-		}*/
-		
-		
-		SPhraseSpec ph1;
-		
-		//if(complement.compareTo("")!=0){
-			//il y a un complement
+			SPhraseSpec ph1;
+
 			
 			ph1=FairePhrase(sujet, verbe,complement, true);
-		//}
-		//else{
-			
-			//ph1=FairePhrase(sujet, verbe);
-		//}
+
 		
 			
 			ph1.getVerb().setFeature(Feature.TENSE, Tense.PAST);
@@ -1428,7 +1829,7 @@ private void ecritureTache(List noeudFille, Element parent, List noeudElemObjet)
 			}
 		}
 		
-		NPPhraseSpec snLeComp = nlgFactory.createNounPhrase("le", Comp);
+		NPPhraseSpec snLeComp = nlgFactory.createNounPhrase(Comp);
 		
 		if(exemple){
 		

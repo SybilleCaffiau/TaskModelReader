@@ -76,10 +76,12 @@ public class Controleur implements ControleurInter {
 	/**
 	 * Methode qui ordonne la transformation du contenu du fichier temporaire (xml) en texte en langage naturel avec des exemples (par le NF)
 	 */
-	public String ecritAvecExemple(){
+	public String ecritAvecExemple(String fichier){
 
 		NF = new KMADToSentenceStructure(nomFichierTemp.toString());
+		NF.lier(fichier);
 		NF.ecritureMdT(true);
+		
 		return(NF.getTextMdT());
 	}
 	

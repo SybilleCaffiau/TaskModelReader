@@ -25,11 +25,11 @@ public class Liens {
 				tache_objet.put("Aller au point de départ", "a");//OK
 				
 				//b et c sont l'objectif visé
-				tache_objet.put("Descendre à l'objectif", "b");//OK
-				tache_objet.put("Monter à l'objectif", "c");//OK
+				tache_objet.put("Descendre vers le lieu décidé", "b");//OK
+				tache_objet.put("Monter vers le lieu décidé", "c");//OK
 				
 				//d est l'objectif visé
-				tache_objet.put("Choisir l'objectif", "d");
+				//tache_objet.put("Décider d'un objectif", "d");
 				
 				//e est le lieu de l'arrêt
 				//tache_objet.put("S'arrêter", "e");//OK
@@ -39,7 +39,7 @@ public class Liens {
 				//tache_objet.put("Manger", "f");
 				
 				//g est le lieu où l'incident s'est produit
-				tache_objet.put("Subir un incident", "g");//OK
+				tache_objet.put("Affronter un incident", "g");//OK
 				
 				//h est le lieu de la rencontre
 				tache_objet.put("Rencontrer d'autres randonneurs", "h");//mettre les personnes + le lieu
@@ -50,7 +50,7 @@ public class Liens {
 				//j est le point de départ 
 				tache_objet.put("Retourner au point de départ", "j");//OK
 				
-				tache_objet.put("Choisir l'objectif", "k");//OK
+				tache_objet.put("Décider d'un objectif", "k");//OK
 				
 	}
 	

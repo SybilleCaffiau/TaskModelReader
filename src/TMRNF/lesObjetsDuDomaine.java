@@ -25,7 +25,7 @@ public class lesObjetsDuDomaine {
 	private Date dateDonnees;
 	
 	//creation du contenu "à la main"
-	/*public lesObjetsDuDomaine(){
+	public lesObjetsDuDomaine(){
 		
 		//date de la randonnée
 				try{
@@ -37,15 +37,15 @@ public class lesObjetsDuDomaine {
 				//dans l'ordre séquentiel
 				//issu du traitement de François sur les données de Catherine (tous les activity event n'ayant pas de POI ont été supprimés
 				
-				seq_objet.add(new Instance("a","arrêt de bus de La coche", "2017-01-22 09:01:20"));
+				seq_objet.add(new Instance("a","arrêt de bus de La coche", "2017-01-22 09:01:20","Catherine"));
 				
-				seq_objet.add(new Instance("c","Grand Rocher", "2017-01-22 09:17:40"));
-				seq_objet.add(new Instance("e","Grand Rocher", "2017-01-22 12:05:43"));
-				seq_objet.add(new Instance("b","bergerie", "2017-01-22 12:18:07"));
-				seq_objet.add(new Instance("c","fontaine", "2017-01-22 09:40:12"));
-				seq_objet.add(new Instance("j","arrêt de bus de La coche", "2017-01-22 12:57:45"));
+				seq_objet.add(new Instance("c","Grand Rocher", "2017-01-22 09:17:40","Catherine"));
+				seq_objet.add(new Instance("e","Grand Rocher", "2017-01-22 12:05:43","Catherine"));
+				seq_objet.add(new Instance("b","bergerie", "2017-01-22 12:18:07","Catherine"));
+				seq_objet.add(new Instance("c","fontaine", "2017-01-22 09:40:12","Catherine"));
+				seq_objet.add(new Instance("j","arrêt de bus de La coche", "2017-01-22 12:57:45","Catherine"));
 				
-	}*/
+	}
 	
 	public lesObjetsDuDomaine(String fichierOnto){
 			//Chemin d'accès au fichier de l'ontologie
@@ -141,7 +141,7 @@ public class lesObjetsDuDomaine {
 								//a est le point de départ (en POI)
 								//tache_objet.put("Aller au point de départ", "a");
 									System.out.println("Le point d'interet du stop " + POI);
-									seq_objet.add(new Instance("a",POI, dateEvent));
+									seq_objet.add(new Instance("a",POI, dateEvent,"Catherine"));
 								
 	
 								
@@ -220,11 +220,11 @@ public class lesObjetsDuDomaine {
 									//System.out.println("l'activité est " +act.getName() + " de " + act.getOwnValue(StoryElementOntologyMapping.NAME_PROPERTY));
 									
 									if(act.getName().compareTo("mount")==0){
-										seq_objet.add(new Instance("c",POI, dateEvent));
+										seq_objet.add(new Instance("c",POI, dateEvent,"Catherine"));
 										
 									}
 									else{
-										seq_objet.add(new Instance("b",POI, dateEvent));
+										seq_objet.add(new Instance("b",POI, dateEvent,"Catherine"));
 									}
 									System.out.println(i.getOwnValue(StoryElementOntologyMapping.HAS_ACTIVITY_RELATION));
 
@@ -233,7 +233,7 @@ public class lesObjetsDuDomaine {
 								//si c'est un arret
 								else{
 									//System.out.println("Le point d'interet du stop " + POI);
-									seq_objet.add(new Instance("e",POI, dateEvent));
+									seq_objet.add(new Instance("e",POI, dateEvent,"Catherine"));
 								}
 	
 								
@@ -319,7 +319,7 @@ public class lesObjetsDuDomaine {
 								//a est le point de départ (en POI)
 								//tache_objet.put("Aller au point de départ", "a");
 									//System.out.println("Le point d'interet du stop " + POI);
-									seq_objet.add(new Instance("j",POI, dateEvent));
+									seq_objet.add(new Instance("j",POI, dateEvent,"Catherine"));
 								
 									System.out.println("le POI d'arrivée est " +ne.getName() + " de " + ne.getOwnValue(StoryElementOntologyMapping.NAME_PROPERTY));
 							}
@@ -408,10 +408,10 @@ public class lesObjetsDuDomaine {
 								
 								//on est en présence d'un accident
 								if (ne.getOntologyClass().toString().compareTo("Accident")==0){
-									seq_objet.add(new Instance("g",Description, dateEvent));
+									seq_objet.add(new Instance("g",Description, dateEvent,"Catherine"));
 								}
 								else{
-									seq_objet.add(new Instance("i",Description, dateEvent));
+									seq_objet.add(new Instance("i",Description, dateEvent,"Catherine"));
 								}
 									
 								
@@ -519,7 +519,7 @@ public class lesObjetsDuDomaine {
 								
 								//on est en présence d'un accident
 								
-									seq_objet.add(new Instance("h",POI, dateEvent));
+									seq_objet.add(new Instance("h",POI, dateEvent,"Catherine"));
 								
 									
 								

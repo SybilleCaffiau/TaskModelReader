@@ -7,11 +7,27 @@ import java.util.Date;
 public class Instance {
 	private String valeur;
 	private String objet;
+	private String protagoniste;
 	private Date d;
 	
+	public Instance(String objet, String valeur, String d, String p){
+		this.objet=objet;
+		this.valeur=valeur;
+		this.protagoniste=p;
+		try{
+			this.d=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d);
+			//this.d=new SimpleDateFormat("yyyy-MM-dd").parse(d);
+		} catch(ParseException e){
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//cas où on ne connait pas le protagoniste
 	public Instance(String objet, String valeur, String d){
 		this.objet=objet;
 		this.valeur=valeur;
+		this.protagoniste="quelqu'un";
 		try{
 			this.d=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d);
 			//this.d=new SimpleDateFormat("yyyy-MM-dd").parse(d);
@@ -32,6 +48,10 @@ public class Instance {
 	
 	public Date getDate(){
 		return this.d;
+	}
+	
+	public String getProtagoniste(){
+		return this.protagoniste;
 	}
 	
 	

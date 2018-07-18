@@ -70,7 +70,7 @@ public class ControleurTest {
 			assertEquals("cas texte ecrit randonnée sans exemple", t2, tex2);
 			
 			
-			String t3=c.ecritAvecExemple();
+			String t3=c.ecritAvecExemple("blablabla");
 			String tex3="Pour faire une sortie de randonnée à ski l'utilisateur sans le logiciel va au point de départ, on fait la randonnée et l'utilisateur sans le logiciel descend au point de départ."+"\n"+
 "Par exemple, le 22 janvier 2017 pour faire une sortie de randonnée à ski Catherine est allé à l'arrêt de bus de La coche, on a fait la randonnée et Catherine a descendu à l'arrêt de bus de La coche."+"\n"+"\n"+"\n"+
 "Pour faire la randonnée on fait le trajet, on interrompt éventuellement le trajet, on rencontre éventuellement d'autres randonneurs, et en même temps l'utilisateur sans le logiciel evalue les conditions de randonnée."+"\n"+"\n"+
