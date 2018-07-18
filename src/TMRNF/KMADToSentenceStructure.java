@@ -56,7 +56,7 @@ public class KMADToSentenceStructure implements KMADToSentenceStructureInter {
 	
 	
 	//liste des s de l'ontologie
-	private lesObjetsDuDomaine seq_objet = new lesObjetsDuDomaine();
+	private lesObjetsDuDomaine seq_objet = new lesObjetsDuDomaine("en utilisant l'ontologie");
 	
 	
 	public KMADToSentenceStructure(String nomFichier){

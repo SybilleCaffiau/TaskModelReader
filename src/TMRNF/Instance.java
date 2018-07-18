@@ -14,6 +14,7 @@ public class Instance {
 		this.valeur=valeur;
 		try{
 			this.d=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(d);
+			//this.d=new SimpleDateFormat("yyyy-MM-dd").parse(d);
 		} catch(ParseException e){
 			e.printStackTrace();
 		}

@@ -14,10 +14,10 @@ public class Executants {
 	}
 	
 	public Executants(){
-		this.operateur="l'utilisateur sans le logiciel";
+		this.operateur="le randonneur";
 		this.systeme="le système";
 		this.abs="on";
-		this.interact="l'utilisateur";
+		this.interact="le randonneur";
 	}
 	
 	public String getUtilisateur(){
